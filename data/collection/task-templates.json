@@ -1,0 +1,13 @@
+{
+  "version": "collection-design@2026-09-16",
+  "enabled": false,
+  "tasks": [
+    {"type": "source_probe", "name": "来源核验", "trigger": "首次接入 / 每周", "output": "可达性、访问规则和结构签名", "priority": 10, "depends_on": []},
+    {"type": "work_incremental", "name": "作品增量", "trigger": "手动起步；稳定后每日", "output": "带来源证据的作品候选", "priority": 30, "depends_on": ["source_probe"]},
+    {"type": "performer_incremental", "name": "人物补充", "trigger": "按需 / 每周", "output": "艺名与别名候选；关系人工确认", "priority": 50, "depends_on": ["source_probe"]},
+    {"type": "work_detail", "name": "详情补全", "trigger": "选定作品 / 缺失字段队列", "output": "字段证据与变更候选", "priority": 20, "depends_on": ["work_incremental"]},
+    {"type": "image_candidates", "name": "图片候选", "trigger": "权利确认后人工点选", "output": "候选元信息，独立媒体审核", "priority": 70, "depends_on": ["work_detail"], "enabled": false},
+    {"type": "reconcile_source", "name": "来源对账", "trigger": "每周 / 更正或下架线索", "output": "字段差异及不可达标记", "priority": 40, "depends_on": ["source_probe"]},
+    {"type": "retry_dead_job", "name": "失败重跑", "trigger": "修复后人工创建新任务", "output": "新任务 ID 与原任务关联", "priority": 60, "depends_on": []}
+  ]
+}

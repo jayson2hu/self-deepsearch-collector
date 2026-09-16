@@ -1,0 +1,66 @@
+{
+  "version": "collection-design@2026-09-16",
+  "evidence_date": "2026-09-16",
+  "sources": [
+    {
+      "id": "fixture",
+      "name": "本地合成样本",
+      "domain": null,
+      "source_type": "fixture",
+      "status": "fixture_only",
+      "network_enabled": false,
+      "role": "演示目录、重复记录、冲突及缺失字段",
+      "connector_version": "collection-demo@v1",
+      "robots_status": "not_applicable",
+      "terms_status": "not_applicable",
+      "rights_status": "synthetic_only",
+      "verified_fields": [],
+      "proposed_fields": ["canonical_code", "title", "release_date", "studio_name", "performer_aliases"]
+    },
+    {
+      "id": "javdb_reference",
+      "name": "JavDB",
+      "domain": "javdb.com",
+      "source_type": "public_web",
+      "status": "unverified",
+      "network_enabled": false,
+      "role": "拟作目录元数据候选来源，字段与可用性待实测",
+      "connector_version": null,
+      "robots_status": "unverified",
+      "terms_status": "unverified",
+      "rights_status": "needs_review",
+      "probe_result": "proxy_connect_200_tls_reset",
+      "verified_fields": [],
+      "proposed_fields": ["canonical_code", "title", "release_date", "studio_name", "performer_aliases"]
+    },
+    {
+      "id": "jable_reference",
+      "name": "Jable",
+      "domain": "jable.tv",
+      "source_type": "public_web",
+      "status": "unverified",
+      "network_enabled": false,
+      "role": "拟作作品身份交叉核对来源；站点上架时间不能当作发行日期",
+      "connector_version": null,
+      "robots_status": "unverified",
+      "terms_status": "unverified",
+      "rights_status": "needs_review",
+      "probe_result": "connection_timeout",
+      "verified_fields": [],
+      "proposed_fields": ["canonical_code", "title", "performer_aliases"]
+    }
+  ],
+  "proposed_limits": {
+    "requests_per_host_concurrency": 1,
+    "minimum_interval_seconds": 10,
+    "daily_pages_per_source": 200,
+    "pages_per_job": 20,
+    "records_per_job": 100,
+    "response_bytes": 2097152,
+    "job_bytes": 20971520,
+    "job_seconds": 600,
+    "http_timeout_seconds": 20,
+    "images_per_job": 0,
+    "note": "工程起始上限，未获来源确认，不能据此启用真实采集；适用时取来源限制与工程上限较小值。"
+  }
+}

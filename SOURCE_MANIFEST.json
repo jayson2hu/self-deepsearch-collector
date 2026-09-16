@@ -1,0 +1,219 @@
+{
+  "origin_repository": "https://github.com/jayson2hu/self-deepsearch",
+  "base_commit": "3f6c13c020f5b8c6aec81f1fd702a1242889827d",
+  "export_date": "2026-09-16",
+  "scope": "Collection demo and design files from the working tree, including previously uncommitted collection changes. Excludes unrelated ongoing display-web and API changes.",
+  "files": [
+    {
+      "path": "data/collection/source-registry.json",
+      "source_sha256": "647f4f4c57dcac810899e13041dc4efb25ce4fd7187847286776207285b3bcf6",
+      "export_sha256": "647f4f4c57dcac810899e13041dc4efb25ce4fd7187847286776207285b3bcf6"
+    },
+    {
+      "path": "data/collection/task-templates.json",
+      "source_sha256": "c865e14076a60be6df7318bb5ad456c629a7e82e6281556e4bad28111865f127",
+      "export_sha256": "c865e14076a60be6df7318bb5ad456c629a7e82e6281556e4bad28111865f127"
+    },
+    {
+      "path": "docs/collection-demo/README.md",
+      "source_sha256": "02fb2106c76f12155c36dbcc7a9ab65b554a5177f35e4004f91f63170463f317",
+      "export_sha256": "02fb2106c76f12155c36dbcc7a9ab65b554a5177f35e4004f91f63170463f317"
+    },
+    {
+      "path": "docs/collection-demo/candidates.jsonl",
+      "source_sha256": "d846efa63af1407035bba25039cd16bf4da21872ffa3b1743807dedea4399a67",
+      "export_sha256": "d846efa63af1407035bba25039cd16bf4da21872ffa3b1743807dedea4399a67"
+    },
+    {
+      "path": "docs/collection-demo/dataset.json",
+      "source_sha256": "355c263af24e232b0ad448385971789d01f7b1d954ea89ff619e1e396520621f",
+      "export_sha256": "355c263af24e232b0ad448385971789d01f7b1d954ea89ff619e1e396520621f"
+    },
+    {
+      "path": "docs/collection-demo/index.html",
+      "source_sha256": "8cbd3a0837621f1c7966f4830ec5f383e84f750da423010f3cd050749301cf01",
+      "export_sha256": "8cbd3a0837621f1c7966f4830ec5f383e84f750da423010f3cd050749301cf01"
+    },
+    {
+      "path": "docs/data-acquisition/ARCHITECTURE.md",
+      "source_sha256": "0dab00c643dece763519b81360eee183d6c2414afc3d3cff679b56f1181f50e6",
+      "export_sha256": "0dab00c643dece763519b81360eee183d6c2414afc3d3cff679b56f1181f50e6"
+    },
+    {
+      "path": "docs/data-acquisition/DATA_CONTRACT.md",
+      "source_sha256": "ff29eb8dac65e42e2d7f43178a5a4073b852eee3155cbebccfab5ee9ae94ed6f",
+      "export_sha256": "c9c723d9fdddb18d19d6d4df2e237afe9a252925a40464fe32a7b865e97111e2"
+    },
+    {
+      "path": "docs/data-acquisition/DEVELOPMENT_PLAN.md",
+      "source_sha256": "05e471f743dac9f240407901333b42ccc0a3c255ce0c52d7a8df79e3707ca7eb",
+      "export_sha256": "05e471f743dac9f240407901333b42ccc0a3c255ce0c52d7a8df79e3707ca7eb"
+    },
+    {
+      "path": "docs/data-acquisition/PRODUCT_DESIGN.md",
+      "source_sha256": "eee8b921b1201766d6815900075b7e985f5f9d07e3b11a38fa6794e7a8a95179",
+      "export_sha256": "eee8b921b1201766d6815900075b7e985f5f9d07e3b11a38fa6794e7a8a95179"
+    },
+    {
+      "path": "docs/data-acquisition/README.md",
+      "source_sha256": "f8408cb1d72a888956561aa37b42b8c7232ac22d845ba3bee3022bebad6448ec",
+      "export_sha256": "a3d34c2914dbbc0133bccd01d58f188b0f669b144996242d99a41a823183232c"
+    },
+    {
+      "path": "docs/data-acquisition/SOURCE_RESEARCH.md",
+      "source_sha256": "64f3e99578bd31a58134ae56f0621c7c0373e6f51d6965c7fb771e2ecf303cc0",
+      "export_sha256": "64f3e99578bd31a58134ae56f0621c7c0373e6f51d6965c7fb771e2ecf303cc0"
+    },
+    {
+      "path": "docs/data-acquisition/VALIDATION.md",
+      "source_sha256": "9313d12b3203a6cf8a0a2d4ddff85bcbd58f6f80a56fd76d0956eaddbe0cc86b",
+      "export_sha256": "9313d12b3203a6cf8a0a2d4ddff85bcbd58f6f80a56fd76d0956eaddbe0cc86b"
+    },
+    {
+      "path": "docs/data-acquisition/WEBSITE_TASKS.md",
+      "source_sha256": "16fc3e16bfd16791d993cc9ac5a8736dbc7ffcc836ea3db48cd8d0dcef921a75",
+      "export_sha256": "16fc3e16bfd16791d993cc9ac5a8736dbc7ffcc836ea3db48cd8d0dcef921a75"
+    },
+    {
+      "path": "docs/evidence/collection-demo/desktop-catalog.png",
+      "source_sha256": "04176da949b878fa333675f099a89edae60fe4d273b8abc8897e36e25e6d628b",
+      "export_sha256": "04176da949b878fa333675f099a89edae60fe4d273b8abc8897e36e25e6d628b"
+    },
+    {
+      "path": "docs/evidence/collection-demo/desktop-overview.png",
+      "source_sha256": "c66895f47d08814c12ee2df3307c6f29d16f2c0857a142cd3752718b61e64e7d",
+      "export_sha256": "c66895f47d08814c12ee2df3307c6f29d16f2c0857a142cd3752718b61e64e7d"
+    },
+    {
+      "path": "docs/evidence/collection-demo/desktop-review.png",
+      "source_sha256": "3f91b09299dddd819fee25f5be8b38cce0cc48bf67a9523989988395839154ff",
+      "export_sha256": "3f91b09299dddd819fee25f5be8b38cce0cc48bf67a9523989988395839154ff"
+    },
+    {
+      "path": "docs/evidence/collection-demo/desktop-sources.png",
+      "source_sha256": "fc643be000247a8d14b4e431ffbe73cc1c577f961443d852cf49b0bccd0f7166",
+      "export_sha256": "fc643be000247a8d14b4e431ffbe73cc1c577f961443d852cf49b0bccd0f7166"
+    },
+    {
+      "path": "docs/evidence/collection-demo/desktop-task-plan.png",
+      "source_sha256": "6c2a8101796f585e76ce01fd0a11f57eb2863403619146f0526be7a861101c8b",
+      "export_sha256": "eed15e820239bafc81ae254ae177ec6860569668750a9cc748049ed989464dcb"
+    },
+    {
+      "path": "docs/evidence/collection-demo/mobile-catalog.png",
+      "source_sha256": "87bb2285e9d12a2f83f1a9dce15bf3cbf3507e31774265ad4ba996d3e6f9b1de",
+      "export_sha256": "87bb2285e9d12a2f83f1a9dce15bf3cbf3507e31774265ad4ba996d3e6f9b1de"
+    },
+    {
+      "path": "docs/evidence/collection-demo/mobile-overview.png",
+      "source_sha256": "28989e622eee2f34471e35c02e8b0ef00f61555bb48158a5ee0bf38b27de4a02",
+      "export_sha256": "28989e622eee2f34471e35c02e8b0ef00f61555bb48158a5ee0bf38b27de4a02"
+    },
+    {
+      "path": "docs/evidence/collection-demo/mobile-review.png",
+      "source_sha256": "8799bc2f4162f74c0173a134955d9cf69ead30df7244058d54ffcebc3dc22c1d",
+      "export_sha256": "8799bc2f4162f74c0173a134955d9cf69ead30df7244058d54ffcebc3dc22c1d"
+    },
+    {
+      "path": "docs/evidence/collection-demo/mobile-sources.png",
+      "source_sha256": "87823024cf32531744530c8e67279ed15abd2bda1521caecc846e994e4ec517f",
+      "export_sha256": "87823024cf32531744530c8e67279ed15abd2bda1521caecc846e994e4ec517f"
+    },
+    {
+      "path": "docs/evidence/collection-demo/mobile-task-plan.png",
+      "source_sha256": "be7ab648fad6f39a7c2085aea9fdf7766c553df5f7e128f0936d03824d343638",
+      "export_sha256": "be7ab648fad6f39a7c2085aea9fdf7766c553df5f7e128f0936d03824d343638"
+    },
+    {
+      "path": "docs/evidence/collection-demo/report.json",
+      "source_sha256": "daccb8dc61db5097b497ca6ba0df8b726be1c936a2aa1cdb097fe4d56ced1bd6",
+      "export_sha256": "05f535b0bc492820a05e6a5f1be38c254a36db8e31b51343189850ab9b994549"
+    },
+    {
+      "path": "scripts/build_collection_demo.mjs",
+      "source_sha256": "677c0a0e780913bfc10c79491b9f2d76f3f8627490d65fe27a802641ac7a2f4d",
+      "export_sha256": "677c0a0e780913bfc10c79491b9f2d76f3f8627490d65fe27a802641ac7a2f4d"
+    },
+    {
+      "path": "scripts/check_markdown_links.mjs",
+      "source_sha256": "cf1b08706b73f7accf067053ceb1afef589e38eceaa5911c92c2f1f435d29dcc",
+      "export_sha256": "cf1b08706b73f7accf067053ceb1afef589e38eceaa5911c92c2f1f435d29dcc"
+    },
+    {
+      "path": "scripts/collection_demo_config.mjs",
+      "source_sha256": "6796e08f4539433c7c84e754a47050ef8d2d5ea93f4389baab68d015400397d8",
+      "export_sha256": "6796e08f4539433c7c84e754a47050ef8d2d5ea93f4389baab68d015400397d8"
+    },
+    {
+      "path": "scripts/run_python.mjs",
+      "source_sha256": "5f4219e34198b829abe75eafbcbaf678fbe19b08459f63cfd4b324a57ea49f8a",
+      "export_sha256": "5f4219e34198b829abe75eafbcbaf678fbe19b08459f63cfd4b324a57ea49f8a"
+    },
+    {
+      "path": "scripts/serve_collection_demo.py",
+      "source_sha256": "da60bdb98ea5d4592a2b29291775e7c9c3a855fce81557e1aba3e20a89dad040",
+      "export_sha256": "da60bdb98ea5d4592a2b29291775e7c9c3a855fce81557e1aba3e20a89dad040"
+    },
+    {
+      "path": "scripts/templates/collection-demo.html",
+      "source_sha256": "7f70ad54e802ce5963f8ad573b78455f0673aa89a535fc90bca51dd02f1634cb",
+      "export_sha256": "7f70ad54e802ce5963f8ad573b78455f0673aa89a535fc90bca51dd02f1634cb"
+    },
+    {
+      "path": "scripts/templates/collection-management.js",
+      "source_sha256": "7ec81016499ced052879eb601ad4d38a9c70cc03638806061e035252d51701d6",
+      "export_sha256": "7ec81016499ced052879eb601ad4d38a9c70cc03638806061e035252d51701d6"
+    },
+    {
+      "path": "scripts/test_collection_demo.mjs",
+      "source_sha256": "7841a19fcc820ab7bc746e2af87d7960cfe8a304b7b35f60b9fc88c2bf83a73d",
+      "export_sha256": "7841a19fcc820ab7bc746e2af87d7960cfe8a304b7b35f60b9fc88c2bf83a73d"
+    },
+    {
+      "path": "scripts/tests/collection_demo_config.test.mjs",
+      "source_sha256": "1cb5e3f9eb0005a582ad1635941546f67d578722b1d1f7f80d5e4d2148b8421c",
+      "export_sha256": "1cb5e3f9eb0005a582ad1635941546f67d578722b1d1f7f80d5e4d2148b8421c"
+    },
+    {
+      "path": "workers/collector-python/collector/__init__.py",
+      "source_sha256": "b5a4de1cb2571e32c6b7c6a395eb3c0e0cfeee8db07447957aaf12fb2c557ad4",
+      "export_sha256": "bd637edb75d827136d4b618848b4711507561f5351f3e3659052262fed7f744a"
+    },
+    {
+      "path": "workers/collector-python/collector/cli.py",
+      "source_sha256": "4645b8d36019d62146f34cdedf4b1225ce07a45020165560c91dc15b182f1944",
+      "export_sha256": "a1c64633a0eb4087d0c1f54ac7c39fd0dac143a1b25a63e74e0815511904e4ab"
+    },
+    {
+      "path": "workers/collector-python/collector/contracts.py",
+      "source_sha256": "072b91513b12fe08f7c8aa86415017e34c7dd1f14ef6073dea9016d98312f818",
+      "export_sha256": "1184a13b23de7312137dbedde0e03abe29b6e70f82e29acd98217d2331631983"
+    },
+    {
+      "path": "workers/collector-python/collector/demo.py",
+      "source_sha256": "740b577845a16015466ea99c4de0f78a41a5b3ae3fb2fda292c22a47c06f27cd",
+      "export_sha256": "740b577845a16015466ea99c4de0f78a41a5b3ae3fb2fda292c22a47c06f27cd"
+    },
+    {
+      "path": "workers/collector-python/collector/fixtures/candidates.jsonl",
+      "source_sha256": "74ca835287f19040d20f0623e56a4afb285a178c8e58173ef70e2577715e9de4",
+      "export_sha256": "74ca835287f19040d20f0623e56a4afb285a178c8e58173ef70e2577715e9de4"
+    },
+    {
+      "path": "workers/collector-python/pyproject.toml",
+      "source_sha256": "a1372cc4771377de826862864a127e7f88101b1a86dbc2a6a1b60e653eb37e93",
+      "export_sha256": "6ebcbc34fd848a52f43373deab432b5344f3f7b06bdae4fbd12d1d8020be839e"
+    },
+    {
+      "path": "workers/collector-python/tests/test_contracts.py",
+      "source_sha256": "b952b0d0ab291ad35a482dc1889eeb8981e69858f495ea707b1fdf647511ccc3",
+      "export_sha256": "b952b0d0ab291ad35a482dc1889eeb8981e69858f495ea707b1fdf647511ccc3"
+    },
+    {
+      "path": "workers/collector-python/tests/test_demo.py",
+      "source_sha256": "bc0335b205d59fb6be573516aa16e22611ea8493f652ba523187b078845c8425",
+      "export_sha256": "bc0335b205d59fb6be573516aa16e22611ea8493f652ba523187b078845c8425"
+    }
+  ],
+  "adaptations": "Standalone package scripts and handoff documents added; links to non-exported upstream files are pinned to the base commit. Browser/proxy credentials and real source captures are excluded. Trailing blank lines in copied Python source files normalized."
+}

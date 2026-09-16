@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "checked_at": "2026-09-16T11:13:01.107Z",
+  "scope": "synthetic local preview and browser-local website/task plans; no live collection or database",
+  "checks": [
+    "Preview serves only allowed artifacts; private repository paths return 404",
+    "desktop: sample runs; approval requires explicit confirmation",
+    "desktop: unresolved conflicts and missing title cannot be published",
+    "desktop: normalized search, conflict result, entity browsing and escaped untrusted query",
+    "desktop: timeout retry, repeated batch, schema stop and cancellation",
+    "desktop: exported state preserves decisions and excludes rejected candidate",
+    "desktop: no external requests, runtime errors or whole-page horizontal overflow",
+    "mobile: sample runs; approval requires explicit confirmation",
+    "mobile: unresolved conflicts and missing title cannot be published",
+    "mobile: normalized search, conflict result, entity browsing and escaped untrusted query",
+    "mobile: timeout retry, repeated batch, schema stop and cancellation",
+    "mobile: exported state preserves decisions and excludes rejected candidate",
+    "mobile: no external requests, runtime errors or whole-page horizontal overflow",
+    "desktop: website registration validates URLs; corresponding scoped task is saved without an executable action",
+    "desktop: website/task survive reload, cancellation persists, duplicate domain is rejected and fixture runner ignores site plans",
+    "desktop: configuration export, mobile source form and zero source-network requests verified",
+    "mobile: website registration validates URLs; corresponding scoped task is saved without an executable action",
+    "mobile: website/task survive reload, cancellation persists, duplicate domain is rejected and fixture runner ignores site plans",
+    "mobile: configuration export, mobile source form and zero source-network requests verified",
+    "Website names render as text; storage failure preserves the form and does not claim creation succeeded",
+    "Standalone file:// page opens and renders catalog without a server"
+  ],
+  "screenshots": [
+    "desktop-overview.png",
+    "mobile-overview.png",
+    "desktop-review.png",
+    "mobile-review.png",
+    "desktop-catalog.png",
+    "mobile-catalog.png",
+    "desktop-task-plan.png",
+    "mobile-task-plan.png",
+    "desktop-sources.png",
+    "mobile-sources.png"
+  ]
+}

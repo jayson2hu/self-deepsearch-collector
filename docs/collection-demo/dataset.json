@@ -1,0 +1,1660 @@
+{
+  "works": [
+    {
+      "id": "demo-work-001",
+      "canonical_code": "DEMO-001",
+      "title": "雨后的城市",
+      "release_date": "2026-09-15",
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 A",
+        "示例人物 D"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-001",
+          "content_hash": "sha256:2973d10906a8f8c89a8e23e740eeed9c88118cee2ae2fd71a1f200fc10703fbc",
+          "payload": {
+            "canonical_code": "DEMO-001",
+            "title": "雨后的城市",
+            "release_date": "2026-09-15",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 A",
+              "示例人物 D"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        },
+        {
+          "external_id": "fixture_reference-001",
+          "content_hash": "sha256:2973d10906a8f8c89a8e23e740eeed9c88118cee2ae2fd71a1f200fc10703fbc",
+          "payload": {
+            "canonical_code": "DEMO-001",
+            "title": "雨后的城市",
+            "release_date": "2026-09-15",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 A",
+              "示例人物 D"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成补充样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-002",
+      "canonical_code": "DEMO-002",
+      "title": "海岸来信",
+      "release_date": "2026-09-12",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 B"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-002",
+          "content_hash": "sha256:b4626b0c63c617ddcbb35e4b617d6eb8087f89ebc6715732e145e9a2ef8a28f1",
+          "payload": {
+            "canonical_code": "DEMO-002",
+            "title": "海岸来信",
+            "release_date": "2026-09-12",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 B"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        },
+        {
+          "external_id": "fixture_reference-002",
+          "content_hash": "sha256:b4626b0c63c617ddcbb35e4b617d6eb8087f89ebc6715732e145e9a2ef8a28f1",
+          "payload": {
+            "canonical_code": "DEMO-002",
+            "title": "海岸来信",
+            "release_date": "2026-09-12",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 B"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成补充样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-003",
+      "canonical_code": "DEMO-003",
+      "title": "午后的光",
+      "release_date": "2026-09-09",
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 C"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-003",
+          "content_hash": "sha256:8fb58eedc5821fe9d06ee7a59cf83418954805692d9c89c449b213fe5b768227",
+          "payload": {
+            "canonical_code": "DEMO-003",
+            "title": "午后的光",
+            "release_date": "2026-09-09",
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 C"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-004",
+      "canonical_code": "DEMO-004",
+      "title": "漫长的周末",
+      "release_date": "2026-09-06",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 D"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-004",
+          "content_hash": "sha256:adb87790c26633a2acec5e57c00670f0c207534bcfb03c8ad80a0c59e9a38d07",
+          "payload": {
+            "canonical_code": "DEMO-004",
+            "title": "漫长的周末",
+            "release_date": "2026-09-06",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 D"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-005",
+      "canonical_code": "DEMO-005",
+      "title": "山间日记",
+      "release_date": "2026-09-03",
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 E"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-005",
+          "content_hash": "sha256:f52072b47451f5e1d4fe5d5fb5497b5bfe527ee545760fafacd2b9eae034ede4",
+          "payload": {
+            "canonical_code": "DEMO-005",
+            "title": "山间日记",
+            "release_date": "2026-09-03",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 E"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-006",
+      "canonical_code": "DEMO-006",
+      "title": "窗边的风景",
+      "release_date": "2026-08-31",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 F",
+        "示例人物 A"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-006",
+          "content_hash": "sha256:e389731bc468f44eb06adeb1249e7e42a44c7c5fbb50fbe8fd7aaeb6ad14f69c",
+          "payload": {
+            "canonical_code": "DEMO-006",
+            "title": "窗边的风景",
+            "release_date": "2026-08-31",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 F",
+              "示例人物 A"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-007",
+      "canonical_code": "DEMO-007",
+      "title": "夜航记录",
+      "release_date": null,
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 G"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-007",
+          "content_hash": "sha256:8e8d28be2db599d48bc92943d26a16167be6c4bf7483f87bff5522348344ea29",
+          "payload": {
+            "canonical_code": "DEMO-007",
+            "title": "夜航记录",
+            "release_date": null,
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 G"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-008",
+      "canonical_code": "DEMO-008",
+      "title": "夏日序曲",
+      "release_date": "2026-08-25",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 H"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-008",
+          "content_hash": "sha256:9f658fcddd8ca44b8717e5a0148b73a7888774e0d176a1b70ee8fcd4d2f70ada",
+          "payload": {
+            "canonical_code": "DEMO-008",
+            "title": "夏日序曲",
+            "release_date": "2026-08-25",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 H"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-009",
+      "canonical_code": "DEMO-009",
+      "title": "留在街角的声音",
+      "release_date": "2026-08-22",
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 A"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-009",
+          "content_hash": "sha256:c8fab4e9f9ca81be2e26cb878d0f567b8029139b9b7a82a0dac550587d585d23",
+          "payload": {
+            "canonical_code": "DEMO-009",
+            "title": "留在街角的声音",
+            "release_date": "2026-08-22",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 A"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-010",
+      "canonical_code": "DEMO-010",
+      "title": "蓝色时刻",
+      "release_date": "2026-08-19",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 B"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-010",
+          "content_hash": "sha256:7ed170848a4801b541dbc0e09e8bc344c3ef336d880402292e75d2483ba1c7c6",
+          "payload": {
+            "canonical_code": "DEMO-010",
+            "title": "蓝色时刻",
+            "release_date": "2026-08-19",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 B"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-011",
+      "canonical_code": "DEMO-011",
+      "title": "四月的散步",
+      "release_date": "2026-08-16",
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 C",
+        "示例人物 F"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-011",
+          "content_hash": "sha256:1b252b118c17069b9a6cafeccebd21e6574a14b263e4e252b457b5f602561eeb",
+          "payload": {
+            "canonical_code": "DEMO-011",
+            "title": "四月的散步",
+            "release_date": "2026-08-16",
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 C",
+              "示例人物 F"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-012",
+      "canonical_code": "DEMO-012",
+      "title": "未完成的旅行",
+      "release_date": "2026-08-13",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 D"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-012",
+          "content_hash": "sha256:e0cada565f6453a1f714e92c44846c6a0b7e719b2259d68dc8573c16aee2f52a",
+          "payload": {
+            "canonical_code": "DEMO-012",
+            "title": "未完成的旅行",
+            "release_date": "2026-08-13",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 D"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-013",
+      "canonical_code": "DEMO-013",
+      "title": "远方的灯塔",
+      "release_date": "2026-08-10",
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 E"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-013",
+          "content_hash": "sha256:e92e0782f4b97539e994bffe0f1dc2ec23ead682003d9f5103b32f8aeb368991",
+          "payload": {
+            "canonical_code": "DEMO-013",
+            "title": "远方的灯塔",
+            "release_date": "2026-08-10",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 E"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-014",
+      "canonical_code": "DEMO-014",
+      "title": "白昼与星辰",
+      "release_date": "2026-08-07",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 F"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-014",
+          "content_hash": "sha256:9b68d68adbd08b62bb04262787174a3c632b7892ee35ef602809493ccefd171f",
+          "payload": {
+            "canonical_code": "DEMO-014",
+            "title": "白昼与星辰",
+            "release_date": "2026-08-07",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 F"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-015",
+      "canonical_code": "DEMO-015",
+      "title": "晴天手记",
+      "release_date": "2026-08-04",
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 G"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-015",
+          "content_hash": "sha256:3fdd1c549b843ea58e02917d6c0443cfa5f9581011e28b6a72329c171a8f7b92",
+          "payload": {
+            "canonical_code": "DEMO-015",
+            "title": "晴天手记",
+            "release_date": "2026-08-04",
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 G"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-016",
+      "canonical_code": "DEMO-016",
+      "title": "一座城的侧面",
+      "release_date": "2026-08-01",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 H",
+        "示例人物 C"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-016",
+          "content_hash": "sha256:2bab20b2bd35233c0d6e9911eeb818eaf5c4e3fe85f4d332ff9f4a7278e04a8d",
+          "payload": {
+            "canonical_code": "DEMO-016",
+            "title": "一座城的侧面",
+            "release_date": "2026-08-01",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 H",
+              "示例人物 C"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-017",
+      "canonical_code": "DEMO-017",
+      "title": "时间的纹理",
+      "release_date": "2026-07-29",
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 A"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-017",
+          "content_hash": "sha256:56a016aa57367d9a1d5db79fbcc03fc5ddcb56e60011db426e7d770a6cea6446",
+          "payload": {
+            "canonical_code": "DEMO-017",
+            "title": "时间的纹理",
+            "release_date": "2026-07-29",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 A"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-018",
+      "canonical_code": "DEMO-018",
+      "title": "沿途风光",
+      "release_date": "2026-07-26",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 B"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-018",
+          "content_hash": "sha256:49b1390b6049379c9ad5faddef49e3454c8d964ccbe22130bdd6740b5c1022e4",
+          "payload": {
+            "canonical_code": "DEMO-018",
+            "title": "沿途风光",
+            "release_date": "2026-07-26",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 B"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-019",
+      "canonical_code": "DEMO-019",
+      "title": "风经过的地方",
+      "release_date": "2026-07-23",
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 C"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-019",
+          "content_hash": "sha256:9cbdc7b362fcd038455f3c07a33d7c0e6b3b53a34d5958b6c7c97c80618b3a75",
+          "payload": {
+            "canonical_code": "DEMO-019",
+            "title": "风经过的地方",
+            "release_date": "2026-07-23",
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 C"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-020",
+      "canonical_code": "DEMO-020",
+      "title": "平行的日常",
+      "release_date": "2026-07-20",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 D"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-020",
+          "content_hash": "sha256:b76f39f905febd852db3c41ed07ff9e48a938c060f628131e83470e54f3d1758",
+          "payload": {
+            "canonical_code": "DEMO-020",
+            "title": "平行的日常",
+            "release_date": "2026-07-20",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 D"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-021",
+      "canonical_code": "DEMO-021",
+      "title": "雨季片段",
+      "release_date": "2026-07-17",
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 E",
+        "示例人物 H"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-021",
+          "content_hash": "sha256:96224b5fdce5da8c975b9ad3a32af42319e9859b5842e550436200c635d9fc39",
+          "payload": {
+            "canonical_code": "DEMO-021",
+            "title": "雨季片段",
+            "release_date": "2026-07-17",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 E",
+              "示例人物 H"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-022",
+      "canonical_code": "DEMO-022",
+      "title": "昨日的明信片",
+      "release_date": "2026-07-14",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 F"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-022",
+          "content_hash": "sha256:a48a6a981d917b407cf0d028575fb22540f0f8157e3f6a353eea2f2bbc4662fe",
+          "payload": {
+            "canonical_code": "DEMO-022",
+            "title": "昨日的明信片",
+            "release_date": "2026-07-14",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 F"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-023",
+      "canonical_code": "DEMO-023",
+      "title": "风与树的对话",
+      "release_date": "2026-07-11",
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 G"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-023",
+          "content_hash": "sha256:c3de566ebdeb72b995c8d505f1702579625919efea4a7e02af27c85a2d70450f",
+          "payload": {
+            "canonical_code": "DEMO-023",
+            "title": "风与树的对话",
+            "release_date": "2026-07-11",
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 G"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-024",
+      "canonical_code": "DEMO-024",
+      "title": "缓慢的季节",
+      "release_date": "2026-07-08",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 H"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-024",
+          "content_hash": "sha256:b9f81edf5a8f6abcb169ce019cf736af71f9a64494ef53d714b9c3b1ffc36288",
+          "payload": {
+            "canonical_code": "DEMO-024",
+            "title": "缓慢的季节",
+            "release_date": "2026-07-08",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 H"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-025",
+      "canonical_code": "DEMO-025",
+      "title": "海风中的书页",
+      "release_date": "2026-07-05",
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 A"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-025",
+          "content_hash": "sha256:49a6dede9bc6daa103d663e80dc1233cc83322a5f102234f51274dfb0c629f11",
+          "payload": {
+            "canonical_code": "DEMO-025",
+            "title": "海风中的书页",
+            "release_date": "2026-07-05",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 A"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-026",
+      "canonical_code": "DEMO-026",
+      "title": "第七个清晨",
+      "release_date": "2026-07-02",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 B",
+        "示例人物 E"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-026",
+          "content_hash": "sha256:4d0a35e924c1601b64e6003a18d56662f2abf04b2a5526318e70d2ce2c6de6f7",
+          "payload": {
+            "canonical_code": "DEMO-026",
+            "title": "第七个清晨",
+            "release_date": "2026-07-02",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 B",
+              "示例人物 E"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-027",
+      "canonical_code": "DEMO-027",
+      "title": "街灯亮起之前",
+      "release_date": "2026-06-29",
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 C"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-027",
+          "content_hash": "sha256:52d31858a185c4097f85c513e4b440e939a619dc17e5600e020fa50d2262b31d",
+          "payload": {
+            "canonical_code": "DEMO-027",
+            "title": "街灯亮起之前",
+            "release_date": "2026-06-29",
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 C"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-028",
+      "canonical_code": "DEMO-028",
+      "title": "北方的车站",
+      "release_date": "2026-06-26",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 D"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-028",
+          "content_hash": "sha256:d99c9940285389288ee641425b5ed0b1437d4f133ea7f46f06ab0b6b5d95bd60",
+          "payload": {
+            "canonical_code": "DEMO-028",
+            "title": "北方的车站",
+            "release_date": "2026-06-26",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 D"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-029",
+      "canonical_code": "DEMO-029",
+      "title": "一日一景",
+      "release_date": null,
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 E"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-029",
+          "content_hash": "sha256:94f8600d6cfa47d232d75366ecb49a1bb0034e8ff133199f28ff44a05acfc790",
+          "payload": {
+            "canonical_code": "DEMO-029",
+            "title": "一日一景",
+            "release_date": null,
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 E"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-030",
+      "canonical_code": "DEMO-030",
+      "title": "春天的回声",
+      "release_date": "2026-06-20",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 F"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-030",
+          "content_hash": "sha256:ccd6e188fb9093a91e8c570b45a8eeb38e92e5cb735f359f1659d7044dcb90e0",
+          "payload": {
+            "canonical_code": "DEMO-030",
+            "title": "春天的回声",
+            "release_date": "2026-06-20",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 F"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-031",
+      "canonical_code": "DEMO-031",
+      "title": "旅途中的一封长信：那些没有标记在地图上的小小风景",
+      "release_date": "2026-06-17",
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 G",
+        "示例人物 B"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-031",
+          "content_hash": "sha256:e06c2fd11bdd72ea3b2738551ff84a0dd6828cc7fae9ece3d863184831ec9e4c",
+          "payload": {
+            "canonical_code": "DEMO-031",
+            "title": "旅途中的一封长信：那些没有标记在地图上的小小风景",
+            "release_date": "2026-06-17",
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 G",
+              "示例人物 B"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-032",
+      "canonical_code": "DEMO-032",
+      "title": "另一种晴朗",
+      "release_date": "2026-06-14",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 H"
+      ],
+      "status": "pending",
+      "errors": [],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-032",
+          "content_hash": "sha256:c4458d1f6c8a7aefead57e18dcfc32e8c7c3dc25e1bb8b5b8935ba7df14a9f3c",
+          "payload": {
+            "canonical_code": "DEMO-032",
+            "title": "另一种晴朗",
+            "release_date": "2026-06-14",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 H"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-033",
+      "canonical_code": "DEMO-033",
+      "title": "城市边缘",
+      "release_date": "2026-06-11",
+      "studio_name": "青屿影像",
+      "performer_aliases": [
+        "示例人物 A"
+      ],
+      "status": "conflict",
+      "errors": [],
+      "conflicts": [
+        {
+          "field": "release_date",
+          "values": [
+            {
+              "value": "2026-06-11",
+              "source": "本地合成目录样本"
+            },
+            {
+              "value": "2026-06-01",
+              "source": "本地合成补充样本"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-033",
+          "content_hash": "sha256:507f1cdaa6d500be93e445745aedd9eab92ac5d92a5d99a5cd846e05c0bb1cd5",
+          "payload": {
+            "canonical_code": "DEMO-033",
+            "title": "城市边缘",
+            "release_date": "2026-06-11",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 A"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        },
+        {
+          "external_id": "fixture_reference-033",
+          "content_hash": "sha256:463086f7defb9e8dd4aa56ddbf1fc5d7bec2fe518248eee13dbf297cb5bafdbc",
+          "payload": {
+            "canonical_code": "DEMO-033",
+            "title": "城市边缘",
+            "release_date": "2026-06-01",
+            "studio_name": "青屿影像",
+            "performer_aliases": [
+              "示例人物 A"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成补充样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-034",
+      "canonical_code": "DEMO-034",
+      "title": "岛屿之间",
+      "release_date": "2026-06-08",
+      "studio_name": "远山制作",
+      "performer_aliases": [
+        "示例人物 B"
+      ],
+      "status": "conflict",
+      "errors": [],
+      "conflicts": [
+        {
+          "field": "release_date",
+          "values": [
+            {
+              "value": "2026-06-08",
+              "source": "本地合成目录样本"
+            },
+            {
+              "value": "2026-06-01",
+              "source": "本地合成补充样本"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-034",
+          "content_hash": "sha256:2e2d7eb6056ed549f320c3c73648894b769b01a409ab09aaf88a4b9c73d3d69d",
+          "payload": {
+            "canonical_code": "DEMO-034",
+            "title": "岛屿之间",
+            "release_date": "2026-06-08",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 B"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        },
+        {
+          "external_id": "fixture_reference-034",
+          "content_hash": "sha256:25eb482a82a35da036343386f051712a420d1dc7bbd098cb1d7ae47cd4bd0452",
+          "payload": {
+            "canonical_code": "DEMO-034",
+            "title": "岛屿之间",
+            "release_date": "2026-06-01",
+            "studio_name": "远山制作",
+            "performer_aliases": [
+              "示例人物 B"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成补充样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-035",
+      "canonical_code": "DEMO-035",
+      "title": "",
+      "release_date": "2026-06-05",
+      "studio_name": "白昼工作室",
+      "performer_aliases": [
+        "示例人物 C"
+      ],
+      "status": "invalid",
+      "errors": [
+        "缺少资料标题，需补全后重新送审"
+      ],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-035",
+          "content_hash": "sha256:59e3ef29aeb8722855e8a54a17de7f41feb4267cbd16f09b214c48b0fdadae89",
+          "payload": {
+            "canonical_code": "DEMO-035",
+            "title": "",
+            "release_date": "2026-06-05",
+            "studio_name": "白昼工作室",
+            "performer_aliases": [
+              "示例人物 C"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    },
+    {
+      "id": "demo-work-036",
+      "canonical_code": "DEMO-036",
+      "title": "",
+      "release_date": "2026-06-02",
+      "studio_name": "回声档案",
+      "performer_aliases": [
+        "示例人物 D",
+        "示例人物 G"
+      ],
+      "status": "invalid",
+      "errors": [
+        "缺少资料标题，需补全后重新送审"
+      ],
+      "conflicts": [],
+      "evidence": [
+        {
+          "external_id": "fixture_catalog-036",
+          "content_hash": "sha256:6256008cf81664657ae71af779ff1588a5eddc9f105bbb9e1d41021114e6205c",
+          "payload": {
+            "canonical_code": "DEMO-036",
+            "title": "",
+            "release_date": "2026-06-02",
+            "studio_name": "回声档案",
+            "performer_aliases": [
+              "示例人物 D",
+              "示例人物 G"
+            ]
+          },
+          "source_type": "fixture",
+          "source_url": null,
+          "source_title": "本地合成目录样本",
+          "checked_at": "2026-09-16T08:00:00Z",
+          "confidence": 1,
+          "rights_status": "needs_review"
+        }
+      ],
+      "updated_at": "2026-09-16T08:00:00Z"
+    }
+  ],
+  "report": {
+    "input_records": 43,
+    "unique_observations": 40,
+    "duplicate_records": 3,
+    "entities": 36,
+    "conflicts": 2,
+    "invalid": 2,
+    "missing_release_date": 2
+  },
+  "version": "collection-demo@v1",
+  "built_at": "2026-09-16T08:00:00Z",
+  "synthetic": true,
+  "network_access": false,
+  "notice": "全部人物、厂牌、作品和统计均为合成演示；不是 JavDB 或 Jable 抓取结果。",
+  "initial_published_ids": [
+    "demo-work-001",
+    "demo-work-002",
+    "demo-work-003",
+    "demo-work-004",
+    "demo-work-005",
+    "demo-work-006",
+    "demo-work-007",
+    "demo-work-008",
+    "demo-work-009",
+    "demo-work-010",
+    "demo-work-011",
+    "demo-work-012",
+    "demo-work-013",
+    "demo-work-014",
+    "demo-work-015",
+    "demo-work-016",
+    "demo-work-017",
+    "demo-work-018",
+    "demo-work-019",
+    "demo-work-020",
+    "demo-work-021",
+    "demo-work-022",
+    "demo-work-023",
+    "demo-work-024"
+  ],
+  "performers": [
+    {
+      "id": "demo-person-1",
+      "name": "示例人物 A",
+      "aliases": [
+        "DEMO PERSON A"
+      ]
+    },
+    {
+      "id": "demo-person-2",
+      "name": "示例人物 B",
+      "aliases": [
+        "DEMO PERSON B"
+      ]
+    },
+    {
+      "id": "demo-person-3",
+      "name": "示例人物 C",
+      "aliases": [
+        "DEMO PERSON C"
+      ]
+    },
+    {
+      "id": "demo-person-4",
+      "name": "示例人物 D",
+      "aliases": [
+        "DEMO PERSON D"
+      ]
+    },
+    {
+      "id": "demo-person-5",
+      "name": "示例人物 E",
+      "aliases": [
+        "DEMO PERSON E"
+      ]
+    },
+    {
+      "id": "demo-person-6",
+      "name": "示例人物 F",
+      "aliases": [
+        "DEMO PERSON F"
+      ]
+    },
+    {
+      "id": "demo-person-7",
+      "name": "示例人物 G",
+      "aliases": [
+        "DEMO PERSON G"
+      ]
+    },
+    {
+      "id": "demo-person-8",
+      "name": "示例人物 H",
+      "aliases": [
+        "DEMO PERSON H"
+      ]
+    }
+  ],
+  "studios": [
+    {
+      "id": "demo-studio-1",
+      "name": "青屿影像"
+    },
+    {
+      "id": "demo-studio-2",
+      "name": "远山制作"
+    },
+    {
+      "id": "demo-studio-3",
+      "name": "白昼工作室"
+    },
+    {
+      "id": "demo-studio-4",
+      "name": "回声档案"
+    }
+  ],
+  "registry": {
+    "version": "collection-design@2026-09-16",
+    "evidence_date": "2026-09-16",
+    "sources": [
+      {
+        "id": "fixture",
+        "name": "本地合成样本",
+        "domain": null,
+        "source_type": "fixture",
+        "status": "fixture_only",
+        "network_enabled": false,
+        "role": "演示目录、重复记录、冲突及缺失字段",
+        "connector_version": "collection-demo@v1",
+        "robots_status": "not_applicable",
+        "terms_status": "not_applicable",
+        "rights_status": "synthetic_only",
+        "verified_fields": [],
+        "proposed_fields": [
+          "canonical_code",
+          "title",
+          "release_date",
+          "studio_name",
+          "performer_aliases"
+        ]
+      },
+      {
+        "id": "javdb_reference",
+        "name": "JavDB",
+        "domain": "javdb.com",
+        "source_type": "public_web",
+        "status": "unverified",
+        "network_enabled": false,
+        "role": "拟作目录元数据候选来源，字段与可用性待实测",
+        "connector_version": null,
+        "robots_status": "unverified",
+        "terms_status": "unverified",
+        "rights_status": "needs_review",
+        "probe_result": "proxy_connect_200_tls_reset",
+        "verified_fields": [],
+        "proposed_fields": [
+          "canonical_code",
+          "title",
+          "release_date",
+          "studio_name",
+          "performer_aliases"
+        ]
+      },
+      {
+        "id": "jable_reference",
+        "name": "Jable",
+        "domain": "jable.tv",
+        "source_type": "public_web",
+        "status": "unverified",
+        "network_enabled": false,
+        "role": "拟作作品身份交叉核对来源；站点上架时间不能当作发行日期",
+        "connector_version": null,
+        "robots_status": "unverified",
+        "terms_status": "unverified",
+        "rights_status": "needs_review",
+        "probe_result": "connection_timeout",
+        "verified_fields": [],
+        "proposed_fields": [
+          "canonical_code",
+          "title",
+          "performer_aliases"
+        ]
+      }
+    ],
+    "proposed_limits": {
+      "requests_per_host_concurrency": 1,
+      "minimum_interval_seconds": 10,
+      "daily_pages_per_source": 200,
+      "pages_per_job": 20,
+      "records_per_job": 100,
+      "response_bytes": 2097152,
+      "job_bytes": 20971520,
+      "job_seconds": 600,
+      "http_timeout_seconds": 20,
+      "images_per_job": 0,
+      "note": "工程起始上限，未获来源确认，不能据此启用真实采集；适用时取来源限制与工程上限较小值。"
+    }
+  },
+  "task_templates": {
+    "version": "collection-design@2026-09-16",
+    "enabled": false,
+    "tasks": [
+      {
+        "type": "source_probe",
+        "name": "来源核验",
+        "trigger": "首次接入 / 每周",
+        "output": "可达性、访问规则和结构签名",
+        "priority": 10,
+        "depends_on": []
+      },
+      {
+        "type": "work_incremental",
+        "name": "作品增量",
+        "trigger": "手动起步；稳定后每日",
+        "output": "带来源证据的作品候选",
+        "priority": 30,
+        "depends_on": [
+          "source_probe"
+        ]
+      },
+      {
+        "type": "performer_incremental",
+        "name": "人物补充",
+        "trigger": "按需 / 每周",
+        "output": "艺名与别名候选；关系人工确认",
+        "priority": 50,
+        "depends_on": [
+          "source_probe"
+        ]
+      },
+      {
+        "type": "work_detail",
+        "name": "详情补全",
+        "trigger": "选定作品 / 缺失字段队列",
+        "output": "字段证据与变更候选",
+        "priority": 20,
+        "depends_on": [
+          "work_incremental"
+        ]
+      },
+      {
+        "type": "image_candidates",
+        "name": "图片候选",
+        "trigger": "权利确认后人工点选",
+        "output": "候选元信息，独立媒体审核",
+        "priority": 70,
+        "depends_on": [
+          "work_detail"
+        ],
+        "enabled": false
+      },
+      {
+        "type": "reconcile_source",
+        "name": "来源对账",
+        "trigger": "每周 / 更正或下架线索",
+        "output": "字段差异及不可达标记",
+        "priority": 40,
+        "depends_on": [
+          "source_probe"
+        ]
+      },
+      {
+        "type": "retry_dead_job",
+        "name": "失败重跑",
+        "trigger": "修复后人工创建新任务",
+        "output": "新任务 ID 与原任务关联",
+        "priority": 60,
+        "depends_on": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "self-deepsearch-collector",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portable collection design, fixture tests and browser-local task planning for self-deepsearch",
+  "engines": { "node": ">=22.0.0", "npm": ">=10.0.0" },
+  "scripts": {
+    "build:collection-demo": "node scripts/build_collection_demo.mjs",
+    "preview:collection-demo": "node scripts/run_python.mjs scripts/serve_collection_demo.py",
+    "collector": "node scripts/run_collector.mjs",
+    "test:collector": "node scripts/run_collector.mjs test",
+    "test:collection-config": "node scripts/tests/collection_demo_config.test.mjs",
+    "test:collection-demo": "node scripts/test_collection_demo.mjs",
+    "check:markdown-links": "node scripts/check_markdown_links.mjs",
+    "test": "npm run test:collector && npm run test:collection-config && npm run check:markdown-links"
+  },
+  "devDependencies": { "@playwright/test": "1.63.0" }
+}
