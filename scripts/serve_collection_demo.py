@@ -15,6 +15,8 @@ FILES = {
 
 
 class Handler(BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+
     def do_HEAD(self):
         self.respond(head=True)
 

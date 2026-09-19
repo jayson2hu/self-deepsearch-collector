@@ -1,0 +1,87 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/5/",
+  "checked_at": "2026-09-18T16:50:03.485Z",
+  "status": "captured",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "initial_http_status": 200,
+  "response_sha256": "68cf2415e9ae2204f30baf0e835a13f47ac7cbe84a6baf1eb2b9d77e4b0efd3f",
+  "response_bytes": 60078,
+  "challenge_detected": false,
+  "discovered_pages": [
+    1,
+    3,
+    4,
+    6,
+    7,
+    214
+  ],
+  "performers": 20,
+  "avatar_candidates": 5,
+  "without_avatar": [
+    {
+      "name": "平野蒼",
+      "profile_url": "https://jable.tv/models/5be8df19ac81451ed12f23891e2c5205/"
+    },
+    {
+      "name": "小野夕子",
+      "profile_url": "https://jable.tv/models/2958338aa4f78c0afb071e2b8a6b5f1b/"
+    },
+    {
+      "name": "佐藤遥希",
+      "profile_url": "https://jable.tv/models/4ff66c0139a67951da3c92a5dd389813/"
+    },
+    {
+      "name": "雨宮琴音",
+      "profile_url": "https://jable.tv/models/17351b212ec557d72e6a6521748e8c5a/"
+    },
+    {
+      "name": "山岸逢花",
+      "profile_url": "https://jable.tv/models/yamagishi-aika/"
+    },
+    {
+      "name": "星乃美桜",
+      "profile_url": "https://jable.tv/models/32ce073d2ad8b94c70864344db21184d/"
+    },
+    {
+      "name": "涼南佳奈",
+      "profile_url": "https://jable.tv/models/6fcfa03b92ef42dd71e0e7c0cf77bfd0/"
+    },
+    {
+      "name": "有坂唯",
+      "profile_url": "https://jable.tv/models/4c378181073271498110acb911e63d19/"
+    },
+    {
+      "name": "松本メイ",
+      "profile_url": "https://jable.tv/models/b80c68cb0d59577515d34609024cc16c/"
+    },
+    {
+      "name": "向理来",
+      "profile_url": "https://jable.tv/models/2b5b59320c901fb2ad29583b6c3d4267/"
+    },
+    {
+      "name": "佐々木優奈",
+      "profile_url": "https://jable.tv/models/1a266219a69a34cc4a5be730e8646d2e/"
+    },
+    {
+      "name": "瑞稀そら",
+      "profile_url": "https://jable.tv/models/0cd27e0b88a0c50a8f6a7bc2a41437a0/"
+    },
+    {
+      "name": "東雲みれい",
+      "profile_url": "https://jable.tv/models/ab0f987c11a51c7436c7fc2f75b53229/"
+    },
+    {
+      "name": "桃谷エリカ",
+      "profile_url": "https://jable.tv/models/dbd86ef3bcb8d4194b527d8acec79796/"
+    },
+    {
+      "name": "櫻ゆの",
+      "profile_url": "https://jable.tv/models/5f2a56509aafbdabfac138e3f09b9e34/"
+    }
+  ],
+  "rejected": [],
+  "projection_sha256": "3c433f3b521351539c9cba22aa89c2396aa26341020143e6c8338a2592eb3798",
+  "sample_kind": "sanitized_browser_dom_projection"
+}

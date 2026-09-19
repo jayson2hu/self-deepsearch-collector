@@ -1,0 +1,737 @@
+{
+  "source_id": "jable_reference",
+  "checked_at": "2026-09-18T17:35:06.787997Z",
+  "captured_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214
+  ],
+  "captured_page_count": 214,
+  "discovered_last_page": 214,
+  "pending_pages": [],
+  "listing_pages_complete": true,
+  "source_record_occurrences": 4271,
+  "unique_performers_in_saved_pages": 4196,
+  "duplicate_occurrences": 75,
+  "full_site_coverage": false,
+  "snapshot_consistency": "non_atomic_dynamic_listing",
+  "resume_chain": [
+    "D:\\fayun\\code\\self-deepsearch-collector\\runtime\\jable-source\\20260919-batch-03\\crawl-report.json",
+    "D:\\fayun\\code\\self-deepsearch-collector\\runtime\\jable-source\\20260919-batch-02\\crawl-report.json",
+    "D:\\fayun\\code\\self-deepsearch-collector\\runtime\\jable-source\\20260919-browser-02\\capture-report.json"
+  ],
+  "records_seen_on_multiple_pages": [
+    {
+      "external_id": "00f2892846a71e7b810591129f928e79",
+      "pages": [
+        170,
+        171
+      ]
+    },
+    {
+      "external_id": "040202cedf76290e8523deaa7243713e",
+      "pages": [
+        70,
+        71
+      ]
+    },
+    {
+      "external_id": "047845ee9e7fe7dfdedd62b0fc397780",
+      "pages": [
+        193,
+        194
+      ]
+    },
+    {
+      "external_id": "05f2cd5938d583cec7a00a743e36ac2a",
+      "pages": [
+        158,
+        159
+      ]
+    },
+    {
+      "external_id": "08d0c3baba98724beb408f2ba672cad3",
+      "pages": [
+        130,
+        131
+      ]
+    },
+    {
+      "external_id": "0eeaf70e15be594b016f1eb24a407fc8",
+      "pages": [
+        202,
+        210
+      ]
+    },
+    {
+      "external_id": "13b8c9c6d0531cbd3499431db477336a",
+      "pages": [
+        55,
+        56
+      ]
+    },
+    {
+      "external_id": "13d9cfb204f67d9fb10a4c884e73030f",
+      "pages": [
+        211,
+        212
+      ]
+    },
+    {
+      "external_id": "1a63e9eb0ab7a98905e6abd92da3f68a",
+      "pages": [
+        74,
+        75
+      ]
+    },
+    {
+      "external_id": "1b43d8145889d58ed84ef156071a4a1e",
+      "pages": [
+        173,
+        177
+      ]
+    },
+    {
+      "external_id": "1cf78bc586738bb5b7b84bc4ead1ab63",
+      "pages": [
+        59,
+        60
+      ]
+    },
+    {
+      "external_id": "2999be326c391c6e1eb94f0e65cf5f75",
+      "pages": [
+        130,
+        131
+      ]
+    },
+    {
+      "external_id": "2d0091bbda067edd971a9eb86fc1c09f",
+      "pages": [
+        185,
+        187,
+        189
+      ]
+    },
+    {
+      "external_id": "2d3220bccd69ad47854d90865c24dc73",
+      "pages": [
+        54,
+        56
+      ]
+    },
+    {
+      "external_id": "370d366f80d24ea354bdf86bf9947b7d",
+      "pages": [
+        193,
+        194
+      ]
+    },
+    {
+      "external_id": "3d78a7000e8e1b015a880877370cb8df",
+      "pages": [
+        164,
+        165
+      ]
+    },
+    {
+      "external_id": "3d82a55c137eeeba516a719ef6f346cc",
+      "pages": [
+        135,
+        136
+      ]
+    },
+    {
+      "external_id": "3fbe240f182911cf661de0e5f6ff470a",
+      "pages": [
+        203,
+        204
+      ]
+    },
+    {
+      "external_id": "4252fa859a2f2065ae0ce0e88d3ac924",
+      "pages": [
+        110,
+        111
+      ]
+    },
+    {
+      "external_id": "47a2ac67b3de36d8cf3fe980d8ac73b9",
+      "pages": [
+        173,
+        174
+      ]
+    },
+    {
+      "external_id": "47a5754f6c7f1d41d0d1712cdf8f873c",
+      "pages": [
+        181,
+        182
+      ]
+    },
+    {
+      "external_id": "489d5a7feb24dc0c9a9e8d4574c30a2b",
+      "pages": [
+        124,
+        125
+      ]
+    },
+    {
+      "external_id": "499109ae033721d64d7d3685a36c87fa",
+      "pages": [
+        56,
+        57
+      ]
+    },
+    {
+      "external_id": "4e2884542cc4f08d47b6677f751bf21c",
+      "pages": [
+        73,
+        74
+      ]
+    },
+    {
+      "external_id": "4f6de28aa09f9d9878a1fe6f0869df64",
+      "pages": [
+        181,
+        182
+      ]
+    },
+    {
+      "external_id": "50395b26f3eaf04f0430c4b625964dd1",
+      "pages": [
+        126,
+        127
+      ]
+    },
+    {
+      "external_id": "540046381d0dc4acd7c1c0c09edb9219",
+      "pages": [
+        196,
+        197
+      ]
+    },
+    {
+      "external_id": "5684daf3ab62575d73b397d1b85a50b5",
+      "pages": [
+        199,
+        202
+      ]
+    },
+    {
+      "external_id": "5e8b6d6187d63f2e1fadb4056291f9dc",
+      "pages": [
+        44,
+        45
+      ]
+    },
+    {
+      "external_id": "66b89bb1c810310fb45275ce0b320c78",
+      "pages": [
+        88,
+        89
+      ]
+    },
+    {
+      "external_id": "6ba3e0f91a98fe96798457366a527d72",
+      "pages": [
+        161,
+        162
+      ]
+    },
+    {
+      "external_id": "6fd57da60540797060d1c0a0418e77e0",
+      "pages": [
+        152,
+        153
+      ]
+    },
+    {
+      "external_id": "722161f1e58d8914e2262349df759901",
+      "pages": [
+        73,
+        74
+      ]
+    },
+    {
+      "external_id": "76557c52af3739eacf2b802f7b34d53e",
+      "pages": [
+        155,
+        156
+      ]
+    },
+    {
+      "external_id": "787684090e6f4132c3851e77b0d20a34",
+      "pages": [
+        94,
+        95
+      ]
+    },
+    {
+      "external_id": "791fea1e19d800f36d91080ef1e36411",
+      "pages": [
+        98,
+        99
+      ]
+    },
+    {
+      "external_id": "7b342378ed35860d1b63c4ae9e7775bc",
+      "pages": [
+        170,
+        171
+      ]
+    },
+    {
+      "external_id": "9a19422392a3ad9788a89bfaa040ac54",
+      "pages": [
+        100,
+        101
+      ]
+    },
+    {
+      "external_id": "a142473fbced55b5dc8bde03b253ec4f",
+      "pages": [
+        159,
+        160
+      ]
+    },
+    {
+      "external_id": "a268a51bc1da47b473a70f2452c3c01b",
+      "pages": [
+        181,
+        182
+      ]
+    },
+    {
+      "external_id": "a448ae8b83998eddcec83118ac878eff",
+      "pages": [
+        128,
+        129
+      ]
+    },
+    {
+      "external_id": "a5b0f943de4584422d1bc5d98ee86b0f",
+      "pages": [
+        181,
+        182
+      ]
+    },
+    {
+      "external_id": "a7bd23e80a0f50f63784d0ade8c28237",
+      "pages": [
+        172,
+        173
+      ]
+    },
+    {
+      "external_id": "ad622f7158eb2302eab77e379aa0b5b5",
+      "pages": [
+        126,
+        127
+      ]
+    },
+    {
+      "external_id": "af3c2a66b5d62306d57ab18b3232c2ba",
+      "pages": [
+        134,
+        135,
+        136
+      ]
+    },
+    {
+      "external_id": "b24ffcfad7f8686656c996f6da9df75a",
+      "pages": [
+        172,
+        173
+      ]
+    },
+    {
+      "external_id": "b86ada06fae7f149bcd0421356eb8863",
+      "pages": [
+        126,
+        127
+      ]
+    },
+    {
+      "external_id": "ba38d3c777fcabb9446e2246684dae92",
+      "pages": [
+        181,
+        182
+      ]
+    },
+    {
+      "external_id": "be03cf6918f22159776ee3a9a2e40d89",
+      "pages": [
+        146,
+        147
+      ]
+    },
+    {
+      "external_id": "c11a98a058d8c084444c83bc6f4464f7",
+      "pages": [
+        73,
+        74
+      ]
+    },
+    {
+      "external_id": "c15107a4bd32bb3ed8277a38adbcc9e4",
+      "pages": [
+        111,
+        112
+      ]
+    },
+    {
+      "external_id": "c2e4637bc961419f4f9ce2ace98fe45b",
+      "pages": [
+        196,
+        197
+      ]
+    },
+    {
+      "external_id": "c58a52a1a2df3eeb35f2342a2af11adb",
+      "pages": [
+        86,
+        87
+      ]
+    },
+    {
+      "external_id": "c5d60263e02a5799bc2fcbd2d9ed45fd",
+      "pages": [
+        167,
+        169
+      ]
+    },
+    {
+      "external_id": "c654f88339a6843dcfae0266bc1cb2d6",
+      "pages": [
+        49,
+        50
+      ]
+    },
+    {
+      "external_id": "c9e91a7d7fcb6c286d41d05e4ed90102",
+      "pages": [
+        211,
+        212
+      ]
+    },
+    {
+      "external_id": "cc358398ca35208c7c4a9475ecf8e420",
+      "pages": [
+        6,
+        7
+      ]
+    },
+    {
+      "external_id": "ce8619574e10f5685fa921e1e519eaad",
+      "pages": [
+        167,
+        168
+      ]
+    },
+    {
+      "external_id": "d46cb118d826ec5dd940cd05f4b54501",
+      "pages": [
+        108,
+        109
+      ]
+    },
+    {
+      "external_id": "d4d799aac35ec87e83a8bad7e8e947f5",
+      "pages": [
+        175,
+        176,
+        177
+      ]
+    },
+    {
+      "external_id": "d9a2f49ff80f5b81d7d468d0ea917bb7",
+      "pages": [
+        104,
+        105
+      ]
+    },
+    {
+      "external_id": "dae6833eafdb3f7f4b181090368a4427",
+      "pages": [
+        107,
+        108
+      ]
+    },
+    {
+      "external_id": "e0fdfd7c6064ac89619901914ed03936",
+      "pages": [
+        140,
+        141
+      ]
+    },
+    {
+      "external_id": "e319425d14563876fa814bb631553cbf",
+      "pages": [
+        161,
+        162
+      ]
+    },
+    {
+      "external_id": "eb62682befa144e19cf44b438e452fe0",
+      "pages": [
+        186,
+        188,
+        190
+      ]
+    },
+    {
+      "external_id": "f144b01ad3de3042eadcd2d14b71bb13",
+      "pages": [
+        213,
+        214
+      ]
+    },
+    {
+      "external_id": "f4836c71a0cb8dc776c368c90f9bbf3c",
+      "pages": [
+        126,
+        127
+      ]
+    },
+    {
+      "external_id": "f84630620c28362b62a7a12e61df649f",
+      "pages": [
+        69,
+        70
+      ]
+    },
+    {
+      "external_id": "f9c122392a03164aaf43b0616ffe03c8",
+      "pages": [
+        174,
+        175
+      ]
+    },
+    {
+      "external_id": "himari-kinoshita",
+      "pages": [
+        50,
+        51
+      ]
+    },
+    {
+      "external_id": "nozomi-ishihara",
+      "pages": [
+        38,
+        39
+      ]
+    }
+  ]
+}

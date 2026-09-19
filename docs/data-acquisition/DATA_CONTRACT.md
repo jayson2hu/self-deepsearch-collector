@@ -12,11 +12,17 @@
 | 厂牌 | `studio_name`，原名与规范名 | 厂牌实体候选、作品关系 | 同名需人工选择，不靠字符串直接关联 |
 | 人物 | `performer_aliases`、公开艺名 | 人物/别名候选；人物身份、成年状态与作品关系确认 | 未确认身份不创建已发布人物关系 |
 | 标签 | 来源原词→受控词典候选 | 有独立词典版本和映射证据 | 不把来源未知分类原样作为本站标签 |
-| 图片 | 图片候选元信息；本轮预算为 0 | 既有媒体 manifest、审核与派生流程 | 没有获准资产就用默认图；不热链来源图片 |
+| 图片 | `media_candidates.jsonl` / SQLite staging；来源 URL、用途、位置、hash、尺寸和审核状态 | `collector.media_staging` → 既有 `media-python/1` manifest、审核与派生流程 | 没有获准资产就用默认图；不热链来源图片 |
 | 资料更新时间 | 公开资料版本实际变更事件 | 发布服务生成 / 回填可追溯版本时间 | 不使用 `checked_at`、`received_at` 或探测时间替代 |
 | 来源与核验 | `provenance`、字段路径、原值、hash | `collector` 及内部字段证据 | 仅后台；访客详情不增加来源核验面板 |
 
-人物身材参数、社交账号、简介及图片不列首批必填；明确有用且可核验后再扩展。禁止从图片推断身份或成年状态。
+人物身材参数、社交账号、简介及人物图片不列首批必填；明确有用且可核验后再扩展。作品封面可作为独立媒体候选，但权利审核前只能进入私有 staging。禁止从图片推断身份或成年状态。
+
+### 1.1 图片候选与正式媒体的边界
+
+采集器保留来源页面内所有符合白名单结构的封面/样例图 URL，不把广告图或任意 `<img>` 计入候选。作品主图映射为 `cover / position=0 / is_primary=true`；来源样例图全部保留，但只有前三张标记为可映射的 `gallery / position=1..3`。超出展示槽位的来源图片不丢失，只是 `display_eligible=false`。
+
+本地下载只进入私有 staging，验证 JPEG/PNG/WebP 魔数、10 MiB 上限、尺寸和 SHA-256。正式 self-deepsearch 仍要求既有媒体处理器生成 4 个对象：私有 `master` 及公开 `w320/w640/w960` WebP；只有 `rights_status=allowed`、资产/对象/关系均 published 时才能通过 `public_entity_media` 展示。采集器不生成虚假的正式 public URL。
 
 ## 2. 候选与批次
 

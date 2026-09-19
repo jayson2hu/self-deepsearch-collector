@@ -1,0 +1,91 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/6/",
+  "checked_at": "2026-09-18T16:50:24.458Z",
+  "status": "captured",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "initial_http_status": 200,
+  "response_sha256": "7790169cb1e33204a733d636f2a6956f252f49d3536a2ccf141d3f89d231ed47",
+  "response_bytes": 59873,
+  "challenge_detected": false,
+  "discovered_pages": [
+    1,
+    4,
+    5,
+    7,
+    8,
+    214
+  ],
+  "performers": 20,
+  "avatar_candidates": 4,
+  "without_avatar": [
+    {
+      "name": "宮下玲奈",
+      "profile_url": "https://jable.tv/models/b435825a4941964079157dd2fc0a8e5a/"
+    },
+    {
+      "name": "篠めぐみ",
+      "profile_url": "https://jable.tv/models/6d3c1a1396b01c0e375f5357142c126f/"
+    },
+    {
+      "name": "深田ナナ",
+      "profile_url": "https://jable.tv/models/b8f9dcbcf39f739e81939ca768ed4061/"
+    },
+    {
+      "name": "泉ののか",
+      "profile_url": "https://jable.tv/models/73c6496cde07448d601a19b5c958cb9f/"
+    },
+    {
+      "name": "成宮祐希",
+      "profile_url": "https://jable.tv/models/07d2664576e70e433bfbca794ea6c7bb/"
+    },
+    {
+      "name": "本郷愛",
+      "profile_url": "https://jable.tv/models/hongo-ai/"
+    },
+    {
+      "name": "双葉みお",
+      "profile_url": "https://jable.tv/models/97381438b416f07d828041a29a4654a1/"
+    },
+    {
+      "name": "石原莉奈",
+      "profile_url": "https://jable.tv/models/9bb767fca083e74af996ba9c328fcb13/"
+    },
+    {
+      "name": "大城かえで",
+      "profile_url": "https://jable.tv/models/da40331930649a37323b7eae0acd36ae/"
+    },
+    {
+      "name": "遥めぐみ",
+      "profile_url": "https://jable.tv/models/a19df8acacafc834711d98d10fc23727/"
+    },
+    {
+      "name": "美月",
+      "profile_url": "https://jable.tv/models/dcb26add212a5a1bcc3d888b18908895/"
+    },
+    {
+      "name": "星まりあ",
+      "profile_url": "https://jable.tv/models/0c48a2e15ec61689bb88a7e31592eda3/"
+    },
+    {
+      "name": "Miru",
+      "profile_url": "https://jable.tv/models/miru/"
+    },
+    {
+      "name": "はやのうた",
+      "profile_url": "https://jable.tv/models/b3adaef761e84cf5a6114dd9cae3006f/"
+    },
+    {
+      "name": "涼風うい",
+      "profile_url": "https://jable.tv/models/231f37f5861f33b0bc330784588d2cda/"
+    },
+    {
+      "name": "赤井美月",
+      "profile_url": "https://jable.tv/models/cc358398ca35208c7c4a9475ecf8e420/"
+    }
+  ],
+  "rejected": [],
+  "projection_sha256": "26e0ee8aab6aa89c192981b12872bd36f1c03a5e78b3a486ddd4c8b8dcec99f7",
+  "sample_kind": "sanitized_browser_dom_projection"
+}

@@ -1,0 +1,13 @@
+{
+  "source_id": "jable_reference",
+  "connector_version": "jable-html@2026-09-19.1",
+  "checked_at": "2026-09-18T16:58:29.954Z",
+  "sample_kind": "sanitized_browser_dom_projection",
+  "capture_report": "capture-report.json",
+  "samples": [
+    {
+      "file": "models.html",
+      "url": "https://jable.tv/models/33/"
+    }
+  ]
+}

@@ -10,10 +10,13 @@
 | 网站登记与任务配置 | 可运行 | 浏览器本地计划及导出 JSON |
 | 桌面 / 手机演示回归 | 可运行；需要 Chromium | 浏览器报告与截图 |
 | JavDB / Jable 访问与页面取样 | 可在可访问这些网站的电脑按第 5 节人工执行 | 目标 HTTP 状态、robots、少量公开详情 HTML |
-| 真实网站字段解析、增量抓取 | 尚未接入 | 需根据有效页面样本开发对应解析器 |
-| 正式审核发布、跨区调度和数据库入库 | 本仓库未提供 | 后续接入原 self-deepsearch 的 Go 服务 |
+| JavDB 真实页面字段解析 | 已接入本地样本解析器 | 固定版本候选 JSONL、字段证据与 parse report |
+| JavDB 有界联网验收 | 已接入人工触发模式 | 最多 5 个显式详情 URL、逐项对账、SQLite staging 与错误表 |
+| Jable 演员 HTML 解析 | 已接入离线快照模式 | 提取公开演员姓名、头像候选和最多 3 张影视图片；自动联网仍被 403 挑战阻止 |
+| 生产定时调度 / 自动增量 / Jable 自动联网 | 尚未启用 | 需完成来源准入；Jable 当前遇到 403 挑战 |
+| 正式审核发布、跨区调度和 PostgreSQL 入库 | 本仓库未提供 | 后续接入原 self-deepsearch 的 Go 服务 |
 
-**不要设置 `COLLECTION_ENABLED=true` 来尝试打开真实抓取。** 原项目仍有 Release A 守卫；本仓库也没有可执行的真实连接器。`collector probe --source-id javdb` 会被现有 fixture CLI 拒绝，不代表网络测试失败。
+**不要设置 `COLLECTION_ENABLED=true` 来尝试打开生产抓取。** 原项目仍有 Release A 守卫；本仓库的联网能力仅限 `collect-review` 人工验收命令，不包含自动网络调度。`collector probe --source-id javdb` 仍会被 fixture CLI 拒绝，不代表样本解析器或有界验收命令不可用。
 
 ## 2. 获取仓库并检查环境
 
@@ -58,7 +61,18 @@ npm run build:collection-demo
 npm run preview:collection-demo
 ```
 
-预期：Python 13 项、配置 8 项及文档链接检查通过；管线报告 `input_records=43`、`unique_observations=40`、`entities=36`、`conflicts=2`、`invalid=2`。这些是 fixture 的确定性结果，不能作为真实网站采集数量或准确率。
+如已按第 5 节取得 JavDB 详情页，在 `runtime/source-test/javdb-samples.json` 登记本地文件、规范 URL、核验时间和 `javdb-html@2026-09-16.1`，再运行：
+
+```bash
+npm run collector -- parse-samples --manifest runtime/source-test/javdb-samples.json --output-dir runtime/source-test/parsed
+npm run collector -- validate --input runtime/source-test/parsed/candidates.jsonl
+```
+
+解析器最多接受 3 个、每个不超过 2 MiB 的同目录样本，只允许无凭据的 `https://javdb.com/v/<id>` URL，遇到挑战页、必填锚点消失、非法日期或重复来源对象会失败。该命令不联网。
+
+需要验证完整数据闭环时，按仓库根目录 README 的“真实数据闭环”执行。SQLite 数据库、原始页面、下载图片和成果页都位于 `runtime/`。联网命令只接受最多 5 个显式详情 URL，要求 `public_metadata_review_only` 确认、robots 文件和至少 20 秒间隔；失败页面必须进入错误表和对账报告。
+
+预期：Python 32 项、配置 8 项及文档链接检查通过；管线报告 `input_records=43`、`unique_observations=40`、`entities=36`、`conflicts=2`、`invalid=2`。这些 fixture 数字是确定性结果，不能作为真实网站采集数量或准确率；真实闭环的本轮结果见[验收报告](./REAL_DATA_ACCEPTANCE.md)。
 
 预览打开 `http://127.0.0.1:13003/`。执行“来源管理 → 新增网站 → 保存并创建任务”，设置路径、区域和预算。网站任务仍显示待接入；运行、审核、展示闭环选择“本地合成样本”。
 

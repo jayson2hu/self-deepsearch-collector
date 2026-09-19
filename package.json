@@ -1,8 +1,8 @@
 {
   "name": "self-deepsearch-collector",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "private": true,
-  "description": "Portable collection design, fixture tests and browser-local task planning for self-deepsearch",
+  "description": "Audited real-source collection, SQLite staging, media candidates and self-deepsearch exports",
   "engines": { "node": ">=22.0.0", "npm": ">=10.0.0" },
   "scripts": {
     "build:collection-demo": "node scripts/build_collection_demo.mjs",
@@ -11,6 +11,10 @@
     "test:collector": "node scripts/run_collector.mjs test",
     "test:collection-config": "node scripts/tests/collection_demo_config.test.mjs",
     "test:collection-demo": "node scripts/test_collection_demo.mjs",
+    "test:real-showcase": "node scripts/test_real_showcase.mjs",
+    "capture:jable": "node scripts/capture_jable_models.mjs",
+    "test:jable-capture": "node --test --test-isolation=none scripts/tests/jable_capture.test.mjs",
+    "test:jable-showcase": "node scripts/test_jable_showcase.mjs",
     "check:markdown-links": "node scripts/check_markdown_links.mjs",
     "test": "npm run test:collector && npm run test:collection-config && npm run check:markdown-links"
   },

@@ -1,0 +1,107 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/166/",
+  "checked_at": "2026-09-18T17:23:34.505Z",
+  "status": "captured",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "initial_http_status": 200,
+  "response_sha256": "affa6a51a42ce3fd006b1a6df304a00f3c526ba7682b2932ead62b6afbaec31c",
+  "response_bytes": 59487,
+  "challenge_detected": false,
+  "discovered_pages": [
+    1,
+    164,
+    165,
+    167,
+    168,
+    214
+  ],
+  "performers": 20,
+  "avatar_candidates": 0,
+  "without_avatar": [
+    {
+      "name": "若月由衣",
+      "profile_url": "https://jable.tv/models/dc373d1ce7de0ed58c2a04bd79ea2f0d/"
+    },
+    {
+      "name": "本橋実来",
+      "profile_url": "https://jable.tv/models/1af730d24e2fdadbbd417fade4fbc42e/"
+    },
+    {
+      "name": "柚木ひなた",
+      "profile_url": "https://jable.tv/models/942c390ce5ef70e1eda9a3b775a98e0e/"
+    },
+    {
+      "name": "茅野亜美",
+      "profile_url": "https://jable.tv/models/ae87499779bd1b564d5f4c440b10ddda/"
+    },
+    {
+      "name": "永崎麗香",
+      "profile_url": "https://jable.tv/models/d6d00684f495e2f75528b9ccce8ae317/"
+    },
+    {
+      "name": "白雪美月",
+      "profile_url": "https://jable.tv/models/38f8e7fab2f7ce28800e94decdaec2ff/"
+    },
+    {
+      "name": "徳山翔子",
+      "profile_url": "https://jable.tv/models/a526ec7166d5e2fa84dd3b738a9742ed/"
+    },
+    {
+      "name": "長谷川柚月",
+      "profile_url": "https://jable.tv/models/3ab3a3564f2a59381dc69e7237138302/"
+    },
+    {
+      "name": "恋川こもも",
+      "profile_url": "https://jable.tv/models/747925cb102024795edc3d63ab482a2b/"
+    },
+    {
+      "name": "姫野ことめ",
+      "profile_url": "https://jable.tv/models/685248b6603b8786bd37932f7d736e02/"
+    },
+    {
+      "name": "生駒みちる",
+      "profile_url": "https://jable.tv/models/821e7abebff3c9a596847700ccd914a2/"
+    },
+    {
+      "name": "太田咲那",
+      "profile_url": "https://jable.tv/models/853597d5d694c3e63f436cbc8acf8e0e/"
+    },
+    {
+      "name": "桐谷紗蘭",
+      "profile_url": "https://jable.tv/models/5b12b50d2938e49ed3ab4fd2ae3ef49a/"
+    },
+    {
+      "name": "八森わか菜",
+      "profile_url": "https://jable.tv/models/9b32fc66570a06b58ac4f96b3a9fd579/"
+    },
+    {
+      "name": "環ニコ",
+      "profile_url": "https://jable.tv/models/d529299fbb1ee05824a8ce57c2f29f89/"
+    },
+    {
+      "name": "知花しおん",
+      "profile_url": "https://jable.tv/models/24085e4acf9c0c81ecb9208976fce0a5/"
+    },
+    {
+      "name": "楠あすな",
+      "profile_url": "https://jable.tv/models/f63609c2d60dd8f4b49abae7096bd1eb/"
+    },
+    {
+      "name": "土屋かなで",
+      "profile_url": "https://jable.tv/models/aa7d16d530958a7dbaf077d344f32d89/"
+    },
+    {
+      "name": "三雲彩葉",
+      "profile_url": "https://jable.tv/models/ccbd1bf866cd8ae035a6fe2bc8a96b17/"
+    },
+    {
+      "name": "本城つばさ",
+      "profile_url": "https://jable.tv/models/21f71267e7350e08b5008f461523c3eb/"
+    }
+  ],
+  "rejected": [],
+  "projection_sha256": "3e0a85220e53054f64986b0a89b6708101a8d616180ac36315bf128fa6850ae5",
+  "sample_kind": "sanitized_browser_dom_projection"
+}

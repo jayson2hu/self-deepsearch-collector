@@ -1,0 +1,99 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/11/",
+  "checked_at": "2026-09-18T16:52:09.373Z",
+  "status": "captured",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "initial_http_status": 200,
+  "response_sha256": "1f3076b862024da892a0a2b87827726d3936d10be0ad6a074634be439550c946",
+  "response_bytes": 59708,
+  "challenge_detected": false,
+  "discovered_pages": [
+    1,
+    9,
+    10,
+    12,
+    13,
+    214
+  ],
+  "performers": 20,
+  "avatar_candidates": 2,
+  "without_avatar": [
+    {
+      "name": "香苗レノン",
+      "profile_url": "https://jable.tv/models/4920ae62e0c86d719634ed58735ec910/"
+    },
+    {
+      "name": "城崎麻理子",
+      "profile_url": "https://jable.tv/models/4038d9b11e567a7d1e41691657f0a95b/"
+    },
+    {
+      "name": "菊川三叶",
+      "profile_url": "https://jable.tv/models/baea5eafee8a8faa5146213f9a2d2b61/"
+    },
+    {
+      "name": "南まゆ",
+      "profile_url": "https://jable.tv/models/b8332ad12d620b67460d14d41b13ee0f/"
+    },
+    {
+      "name": "乾りっか",
+      "profile_url": "https://jable.tv/models/8256fbff9ac14b1e9b1d7c16a85bb90b/"
+    },
+    {
+      "name": "立花美涼",
+      "profile_url": "https://jable.tv/models/33236e4677fd2d2d8435e7c53167859f/"
+    },
+    {
+      "name": "桜木りの",
+      "profile_url": "https://jable.tv/models/c8a42ef9f2bbcaae419c60eae68a59b7/"
+    },
+    {
+      "name": "朝田ひまり",
+      "profile_url": "https://jable.tv/models/23180f2fcd7927f0256ab9ceadaecc64/"
+    },
+    {
+      "name": "江波りゅう",
+      "profile_url": "https://jable.tv/models/15ba95278ada68ea550d22a447b05a24/"
+    },
+    {
+      "name": "神波多一花",
+      "profile_url": "https://jable.tv/models/a4c6784bed5fa441883b6d5320840c64/"
+    },
+    {
+      "name": "鷲尾めい",
+      "profile_url": "https://jable.tv/models/99df40f2a110f8540246b0b975b1ccc7/"
+    },
+    {
+      "name": "橘涼香",
+      "profile_url": "https://jable.tv/models/5812a024c155e3e6157b5b67298b3d1a/"
+    },
+    {
+      "name": "本田岬",
+      "profile_url": "https://jable.tv/models/misaki-honda/"
+    },
+    {
+      "name": "七瀬アリス",
+      "profile_url": "https://jable.tv/models/917eb88f450a64563e0bb7dd8aade035/"
+    },
+    {
+      "name": "戸田さおり",
+      "profile_url": "https://jable.tv/models/4a9d754675cfc8da8bf69de37b84a091/"
+    },
+    {
+      "name": "木崎紗耶",
+      "profile_url": "https://jable.tv/models/8da975959655f1a77ee92ef9ac696389/"
+    },
+    {
+      "name": "遠藤ありさ",
+      "profile_url": "https://jable.tv/models/f63212bc53989a5d95548da1447f3e0c/"
+    },
+    {
+      "name": "野村由香利",
+      "profile_url": "https://jable.tv/models/dfed86d000b4c70b72a26c6d08eb2f70/"
+    }
+  ],
+  "rejected": [],
+  "projection_sha256": "3c006c4790b5b239e1633fa5f2d2540d3accc883ff19728cae6becb8bff8d6cc",
+  "sample_kind": "sanitized_browser_dom_projection"
+}

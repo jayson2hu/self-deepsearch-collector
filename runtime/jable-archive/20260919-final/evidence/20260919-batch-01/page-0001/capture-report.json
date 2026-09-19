@@ -1,0 +1,13 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/",
+  "checked_at": "2026-09-18T16:46:25.477Z",
+  "status": "failed",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "initial_http_status": 403,
+  "response_sha256": "f4c0da5783aa8c0dbb847d513aaa47c7590d690e3418c1fe2ea3ef1981432a62",
+  "response_bytes": 6103,
+  "challenge_detected": false,
+  "error_code": "NO_MODEL_CARDS"
+}

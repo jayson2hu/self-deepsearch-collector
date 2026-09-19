@@ -10,7 +10,11 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 .cache/
-runtime/
+runtime/*
+!runtime/jable-archive/
+runtime/jable-archive/*
+!runtime/jable-archive/20260919-final/
+!runtime/jable-archive/20260919-final/**
 spool/
 collected-data/
 playwright-report/

@@ -1,0 +1,44 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/",
+  "checked_at": "2026-09-18T16:46:24.723Z",
+  "browser": "chrome",
+  "isolated_context": true,
+  "headless": false,
+  "proxy_used": true,
+  "scope": "public_models_pagination_portraits_only",
+  "status": "stopped_on_failure",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "cookies_persisted": false,
+  "max_pages": 20,
+  "interval_seconds": 10,
+  "pages": [
+    {
+      "page": 1,
+      "directory": "D:\\fayun\\code\\self-deepsearch-collector\\runtime\\jable-source\\20260919-batch-01\\page-0001",
+      "source_id": "jable_reference",
+      "source_url": "https://jable.tv/models/",
+      "checked_at": "2026-09-18T16:46:25.477Z",
+      "status": "failed",
+      "downloaded_images": 0,
+      "full_site_coverage": false,
+      "initial_http_status": 403,
+      "response_sha256": "f4c0da5783aa8c0dbb847d513aaa47c7590d690e3418c1fe2ea3ef1981432a62",
+      "response_bytes": 6103,
+      "challenge_detected": false,
+      "error_code": "NO_MODEL_CARDS"
+    }
+  ],
+  "visited_pages": [],
+  "pending_pages": [
+    1
+  ],
+  "discovered_last_page": 1,
+  "listing_pages_complete": false,
+  "robots": {
+    "status": 200,
+    "sha256": "754278bec894d8277e7828b910b8ce76401362fbab84586e4c3944da801fa7e5",
+    "bytes": 630
+  }
+}

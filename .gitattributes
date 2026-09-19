@@ -1,0 +1,3 @@
+# The accepted data archive is checksummed byte-for-byte. Never rewrite its
+# JSON, JSONL, HTML, text evidence, SQLite database or portrait files.
+runtime/jable-archive/20260919-final/** -text -diff

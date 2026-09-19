@@ -1,0 +1,12 @@
+{
+  "works": 0,
+  "media_candidates": 0,
+  "display_eligible_media": 0,
+  "downloaded_media": 0,
+  "publication_ready_media": 0,
+  "performers": 4196,
+  "performer_media_candidates": 130,
+  "downloaded_performer_media": 130,
+  "publication_ready_performer_media": 0,
+  "note": "media_staging is an intake artifact; final self-deepsearch display still requires media-python/1 renditions and publication approval"
+}

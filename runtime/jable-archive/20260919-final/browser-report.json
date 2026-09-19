@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checked_at": "2026-09-18T17:35:13.631Z",
+  "performers": 4196,
+  "decoded_avatars": 130,
+  "failed_decodes": 0,
+  "external_requests": 0,
+  "runtime_errors": 0,
+  "search_filter_detail_mobile": "passed"
+}

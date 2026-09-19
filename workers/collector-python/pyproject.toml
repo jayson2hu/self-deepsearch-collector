@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "self-deepsearch-collector"
-version = "0.1.0"
-description = "Fixture-only collection contract simulator for Release A"
+version = "0.4.0"
+description = "Audited collection, SQLite staging and self-deepsearch export pipeline"
 requires-python = ">=3.12"
 
 [tool.setuptools.packages.find]

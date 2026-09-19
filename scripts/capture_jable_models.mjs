@@ -1,0 +1,229 @@
+import { createHash } from 'node:crypto';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
+import { spawnSync } from 'node:child_process';
+import { chromium } from '@playwright/test';
+import { resolvePython } from './run_python.mjs';
+
+const SOURCE = 'https://jable.tv/models/';
+const VERSION = 'jable-html@2026-09-19.1';
+const digest = value => createHash('sha256').update(value).digest('hex');
+const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+
+export function publicModelUrl(value) {
+  try {
+    const url = new URL(value, SOURCE);
+    if (url.protocol !== 'https:' || !['jable.tv', 'www.jable.tv'].includes(url.hostname)
+      || url.username || url.password || url.port || url.search || url.hash
+      || !/^\/models\/[^/]+\/$/.test(url.pathname) || /^\/models\/\d+\/$/.test(url.pathname)) return null;
+    return `https://jable.tv${url.pathname}`;
+  } catch { return null; }
+}
+
+export function publicAvatarUrl(value) {
+  try {
+    const url = new URL(value, SOURCE);
+    if (url.protocol !== 'https:' || url.hostname !== 'assets-cdn.jable.tv'
+      || url.username || url.password || url.port || url.search || url.hash
+      || !url.pathname.startsWith('/contents/models/')) return null;
+    return url.href;
+  } catch { return null; }
+}
+
+export function projectModels(rows) {
+  const unique = new Map();
+  const rejected = [];
+  for (const row of rows) {
+    const url = publicModelUrl(row.url);
+    const name = String(row.name || '').replace(/\s+/g, ' ').trim();
+    if (!url || !name || name.length > 200) { rejected.push({ reason: 'invalid_model_card' }); continue; }
+    const avatar = row.image ? publicAvatarUrl(row.image) : null;
+    if (row.image && !avatar) rejected.push({ profile_url: url, reason: 'unapproved_avatar_url' });
+    const previous = unique.get(url);
+    unique.set(url, { url, name, avatar: avatar || previous?.avatar || null,
+      work_count: Number.isSafeInteger(row.work_count) && row.work_count >= 0 ? row.work_count : null });
+  }
+  const models = [...unique.values()];
+  // This is a sanitized DOM projection, not the original site's HTML.
+  const html = '<!doctype html><html lang="zh"><meta charset="utf-8"><body>\n'
+    + models.map(model => `<a href="${escape(model.url)}"><h6 class="title">${escape(model.name)}</h6>${model.work_count !== null ? `<span>${model.work_count} 部影片</span>` : ''}${model.avatar ? `<img src="${escape(model.avatar)}" alt="${escape(model.name)}">` : ''}</a>`).join('\n')
+    + '\n</body></html>\n';
+  return { models, rejected, html };
+}
+
+export function listingPage(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'https:' || url.hostname !== 'jable.tv' || url.username || url.password || url.port || url.search || url.hash) return null;
+    if (url.pathname === '/models/') return 1;
+    const match = /^\/models\/([1-9]\d*)\/$/.exec(url.pathname);
+    return match && Number(match[1]) <= 10000 ? Number(match[1]) : null;
+  } catch { return null; }
+}
+
+function robotsAllowed(body, url) {
+  const result = spawnSync(resolvePython(), ['-c', 'import sys,urllib.robotparser; r=urllib.robotparser.RobotFileParser(); r.parse(sys.stdin.read().splitlines()); sys.exit(0 if r.can_fetch("self-deepsearch-collector", sys.argv[1]) else 2)', url], { input: body, windowsHide: true });
+  return !result.error && result.status === 0;
+}
+
+async function capturePage(context, { outputDir, sourceUrl, waitSeconds, robotsBody }) {
+  mkdirSync(outputDir);
+  const report = { source_id: 'jable_reference', source_url: sourceUrl, checked_at: new Date().toISOString(), status: 'started', downloaded_images: 0, full_site_coverage: false };
+  let page;
+  try {
+    if (!robotsAllowed(robotsBody, sourceUrl)) throw new Error('ROBOTS_DISALLOW');
+    page = await context.newPage();
+    const response = await page.goto(sourceUrl, { waitUntil: 'domcontentloaded', timeout: 25000 });
+    report.initial_http_status = response?.status() ?? null;
+    const raw = response ? await response.body() : Buffer.alloc(0);
+    report.response_sha256 = digest(raw);
+    report.response_bytes = raw.length;
+    if (raw.length > 2 * 1024 * 1024) throw new Error('PAGE_TOO_LARGE');
+    if (response?.status() === 429) throw new Error('RATE_LIMITED');
+    const deadline = Date.now() + waitSeconds * 1000;
+    let rows = [];
+    do {
+      rows = await page.locator('a[href*="/models/"]').evaluateAll(links => links.map(a => {
+        const img = a.querySelector('img');
+        const count = a.querySelector('.detail span')?.textContent?.match(/([\d,]+)\s*部/);
+        return {
+          url: a.href,
+          name: a.querySelector('.title,h6,h5,h4,h3')?.textContent || img?.alt || a.getAttribute('title') || '',
+          image: img && (img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || img.getAttribute('data-original') || img.getAttribute('src')),
+          work_count: count ? Number(count[1].replaceAll(',', '')) : null,
+        };
+      }));
+      rows = rows.filter(row => publicModelUrl(row.url));
+      if (rows.some(row => row.name.trim()) || Date.now() >= deadline) break;
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    } while (true);
+    report.challenge_detected = /just a moment|cloudflare|驗證|验证/i.test(await page.title()) || (response?.status() === 403 && /cf-chl-|challenge-platform/.test(raw.toString('utf8')));
+    if (!rows.length || report.challenge_detected) throw new Error(report.challenge_detected ? 'ACCESS_CHALLENGE' : (response?.status() === 403 ? 'ACCESS_DENIED' : 'NO_MODEL_CARDS'));
+    const projection = projectModels(rows);
+    if (!projection.models.length) throw new Error('NO_VALID_MODEL_CARDS');
+    report.discovered_pages = [...new Set((await page.locator('a.page-link[href]').evaluateAll(links => links.map(a => a.href))).map(listingPage).filter(Boolean))];
+    report.status = 'captured';
+    report.performers = projection.models.length;
+    report.avatar_candidates = projection.models.filter(model => model.avatar).length;
+    report.without_avatar = projection.models.filter(model => !model.avatar).map(model => ({ name: model.name, profile_url: model.url }));
+    report.rejected = projection.rejected;
+    report.projection_sha256 = digest(projection.html);
+    report.sample_kind = 'sanitized_browser_dom_projection';
+    writeFileSync(path.join(outputDir, 'models.html'), projection.html);
+    writeFileSync(path.join(outputDir, 'manifest.json'), JSON.stringify({
+      source_id: 'jable_reference', connector_version: VERSION, checked_at: report.checked_at,
+      sample_kind: report.sample_kind, capture_report: 'capture-report.json',
+      samples: [{ file: 'models.html', url: sourceUrl }],
+    }, null, 2) + '\n');
+  } catch (error) {
+    report.status = 'failed';
+    report.error_code = /^[A-Z_]+$/.test(error.message) ? error.message : error.name;
+  } finally {
+    await page?.close();
+    writeFileSync(path.join(outputDir, 'capture-report.json'), JSON.stringify(report, null, 2) + '\n');
+  }
+  return report;
+}
+
+export async function captureModels({ outputDir, headless = false, waitSeconds = 30, maxPages = 5, intervalSeconds = 10, resumeReport, database, proxy = process.env.HTTPS_PROXY }) {
+  if (!Number.isInteger(waitSeconds) || waitSeconds < 0 || waitSeconds > 60) throw new Error('wait-seconds must be 0..60');
+  if (!Number.isInteger(maxPages) || maxPages < 1 || maxPages > 200) throw new Error('max-pages must be 1..200');
+  if (!Number.isInteger(intervalSeconds) || intervalSeconds < 10 || intervalSeconds > 120) throw new Error('interval-seconds must be 10..120');
+  // A new directory prevents a failed run from leaving an old success manifest in use.
+  mkdirSync(path.dirname(outputDir), { recursive: true });
+  mkdirSync(outputDir);
+  const report = {
+    source_id: 'jable_reference', source_url: SOURCE, checked_at: new Date().toISOString(),
+    browser: 'chrome', isolated_context: true, headless, proxy_used: Boolean(proxy),
+    scope: 'public_models_pagination_portraits_only', status: 'started',
+    downloaded_images: 0, full_site_coverage: false, cookies_persisted: false,
+    max_pages: maxPages, interval_seconds: intervalSeconds, pages: [],
+    visited_pages: [], pending_pages: [1], discovered_last_page: 1,
+  };
+  if (resumeReport) {
+    const previous = JSON.parse(readFileSync(resumeReport, 'utf8'));
+    // Upgrade an earlier successful one-page capture without re-fetching that page.
+    if (previous.source_url === SOURCE && previous.status === 'captured' && Array.isArray(previous.listing_navigation)) {
+      previous.visited_pages = [1];
+      previous.discovered_last_page = Math.max(1, ...previous.listing_navigation.map(link => listingPage(link.url)).filter(Boolean));
+    }
+    if (previous.source_id !== report.source_id || !Array.isArray(previous.visited_pages)
+      || !Number.isInteger(previous.discovered_last_page) || previous.discovered_last_page < 1 || previous.discovered_last_page > 10000
+      || previous.visited_pages.some(n => !Number.isInteger(n) || n < 1 || n > previous.discovered_last_page)) throw new Error('Invalid resume report');
+    report.visited_pages = [...new Set(previous.visited_pages)];
+    report.discovered_last_page = previous.discovered_last_page;
+    report.resumed_from = path.resolve(resumeReport);
+  }
+  const checkpoint = () => {
+    report.pending_pages = Array.from({ length: report.discovered_last_page }, (_, i) => i + 1).filter(n => !report.visited_pages.includes(n));
+    report.listing_pages_complete = report.pending_pages.length === 0;
+    writeFileSync(path.join(outputDir, 'crawl-report.json'), JSON.stringify(report, null, 2) + '\n');
+  };
+  checkpoint();
+  let browser;
+  try {
+    browser = await chromium.launch({ channel: 'chrome', headless, ...(proxy ? { proxy: { server: proxy } } : {}) });
+    const context = await browser.newContext({ serviceWorkers: 'block', acceptDownloads: false });
+    const robots = await context.request.get('https://jable.tv/robots.txt', { timeout: 20000, maxRedirects: 0 });
+    const robotsBody = await robots.body();
+    report.robots = { status: robots.status(), sha256: digest(robotsBody), bytes: robotsBody.length };
+    if (robots.status() !== 200 || robotsBody.length > 65536) throw new Error('ROBOTS_UNAVAILABLE');
+    if (!robotsAllowed(robotsBody, SOURCE)) throw new Error('ROBOTS_DISALLOW');
+    writeFileSync(path.join(outputDir, 'robots.txt'), robotsBody);
+    await context.route('**/*', route => {
+      // Do not fetch videos, site image galleries, or pop-up documents.
+      const request = route.request();
+      if (['image', 'media'].includes(request.resourceType())) return route.abort();
+      if (request.isNavigationRequest() && request.frame() === request.frame().page().mainFrame()) {
+        if (!listingPage(request.url())) return route.abort();
+      }
+      return route.continue();
+    });
+    for (let index = 0; index < maxPages && report.pending_pages.length; index++) {
+      if (index) await new Promise(resolve => setTimeout(resolve, intervalSeconds * 1000));
+      const number = report.pending_pages[0];
+      const sourceUrl = number === 1 ? SOURCE : `${SOURCE}${number}/`;
+      const pageDir = path.join(outputDir, `page-${String(number).padStart(4, '0')}`);
+      const pageReport = await capturePage(context, { outputDir: pageDir, sourceUrl, waitSeconds, robotsBody });
+      report.pages.push({ page: number, directory: path.resolve(pageDir), ...pageReport });
+      console.log(JSON.stringify({ page: number, status: pageReport.status, performers: pageReport.performers || 0, avatars: pageReport.avatar_candidates || 0 }));
+      if (pageReport.status !== 'captured') { report.status = 'stopped_on_failure'; checkpoint(); break; }
+      report.visited_pages.push(number);
+      report.discovered_last_page = Math.max(report.discovered_last_page, ...pageReport.discovered_pages);
+      checkpoint();
+      if (database) {
+        const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+        const ingest = spawnSync(resolvePython(), ['-m', 'collector.jable_assets', 'ingest-jable-samples',
+          '--manifest', path.join(pageDir, 'manifest.json'), '--database', path.resolve(database), '--output-dir', path.join(pageDir, 'ingested')],
+          { cwd: root, env: { ...process.env, PYTHONPATH: path.join(root, 'workers', 'collector-python') }, windowsHide: true, encoding: 'utf8' });
+        if (ingest.error || ingest.status !== 0) throw new Error('DATABASE_INGEST_FAILED');
+        report.pages.at(-1).stored = true;
+        checkpoint();
+      }
+    }
+    if (report.status === 'started') report.status = report.pending_pages.length ? 'batch_complete' : 'listing_complete';
+  } catch (error) {
+    report.status = 'failed';
+    // Avoid leaking signed URLs, local proxy credentials, or browser launch arguments.
+    report.error_code = /^[A-Z_]+$/.test(error.message) ? error.message : error.name;
+  } finally {
+    await browser?.close();
+    checkpoint();
+  }
+  return report;
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const { values } = parseArgs({ options: {
+    'output-dir': { type: 'string' }, 'wait-seconds': { type: 'string', default: '30' }, headless: { type: 'boolean', default: false },
+    'max-pages': { type: 'string', default: '5' }, 'interval-seconds': { type: 'string', default: '10' }, resume: { type: 'string' }, database: { type: 'string' },
+  } });
+  if (!values['output-dir']) throw new Error('--output-dir is required and must be a new directory');
+  const result = await captureModels({ outputDir: path.resolve(values['output-dir']), waitSeconds: Number(values['wait-seconds']), headless: values.headless,
+    maxPages: Number(values['max-pages']), intervalSeconds: Number(values['interval-seconds']), resumeReport: values.resume, database: values.database });
+  console.log(JSON.stringify({ status: result.status, captured_this_run: result.pages.filter(p => p.status === 'captured').length,
+    captured_pages_total: result.visited_pages.length, remaining_pages: result.pending_pages.length, report: path.join(values['output-dir'], 'crawl-report.json') }));
+  process.exitCode = ['batch_complete', 'listing_complete'].includes(result.status) ? 0 : 2;
+}

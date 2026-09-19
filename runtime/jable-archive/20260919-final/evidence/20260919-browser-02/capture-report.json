@@ -1,0 +1,289 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/",
+  "checked_at": "2026-09-18T16:43:18.361Z",
+  "browser": "chrome",
+  "isolated_context": true,
+  "headless": false,
+  "proxy_used": true,
+  "scope": "one_public_models_page_portraits_only",
+  "status": "captured",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "cookies_persisted": false,
+  "robots": {
+    "status": 200,
+    "sha256": "754278bec894d8277e7828b910b8ce76401362fbab84586e4c3944da801fa7e5",
+    "bytes": 630
+  },
+  "initial_http_status": 200,
+  "response_sha256": "1c63bfc9432d0bd7eb467c0a3cfa620f5d721e8ff021d8ae2a528d14938917df",
+  "response_bytes": 59333,
+  "challenge_detected": false,
+  "listing_navigation": [
+    {
+      "url": "https://jable.tv/models/",
+      "label": "👩 按女優",
+      "classes": "h5 text-light"
+    },
+    {
+      "url": "https://jable.tv/models/#",
+      "label": "",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/#",
+      "label": "名稱順序",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/#",
+      "label": "熱度優先",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/#",
+      "label": "最近更新",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/#",
+      "label": "最多影片",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/bfaca44240620be2f3092c294fb22fbe/",
+      "label": "仲間あずみ",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/d52d439054a2d095151691b11a99b802/",
+      "label": "大橋未久",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/f5fcda107aadc340592ec5b60671c1b8/",
+      "label": "上原亜衣",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/a9a8dea24d88a7d6dea79cfdd749f97c/",
+      "label": "立花瑠莉",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/yua-mikami/",
+      "label": "三上悠亜",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/tiny/",
+      "label": "Tiny",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/dbfe587363e5f187594b961b03d953eb/",
+      "label": "尾上若葉",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/kirara-asuka/",
+      "label": "明日花キララ",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/9a9e7e432a8bf1817d155a4b6e4cabce/",
+      "label": "北島玲",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/arina-hashimoto/",
+      "label": "橋本ありな",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/8c495da1c617938f9e32a00d221f7a22/",
+      "label": "倖田李梨",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/c72999e3ad1f7c36e8018f84a283103e/",
+      "label": "桜井美里",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/7342f30fc0b4acffccc8083f1529b157/",
+      "label": "望月涼子",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/7bc503e42b004a64371957472b765add/",
+      "label": "高垣怜",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/a295a49a530517f2b2e4ea725a4672d8/",
+      "label": "渡辺茜",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/76deee4a66140394afb9b342222318c9/",
+      "label": "あまつか亜夢",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/saika-kawakita/",
+      "label": "河北彩花",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/20d0c4a34eda32e442cc3ff532f568fd/",
+      "label": "小宵こなん",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/2b1eac8f3806062163c2bf6b70e090bc/",
+      "label": "天音りせ",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/kaede-karen/",
+      "label": "楓カレン",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/2/",
+      "label": "02",
+      "classes": "page-link"
+    },
+    {
+      "url": "https://jable.tv/models/3/",
+      "label": "03",
+      "classes": "page-link"
+    },
+    {
+      "url": "https://jable.tv/models/4/",
+      "label": "04",
+      "classes": "page-link"
+    },
+    {
+      "url": "https://jable.tv/models/5/",
+      "label": "05",
+      "classes": "page-link"
+    },
+    {
+      "url": "https://jable.tv/models/214/",
+      "label": "最後 »",
+      "classes": "page-link"
+    },
+    {
+      "url": "https://jable.tv/models/#",
+      "label": "",
+      "classes": ""
+    },
+    {
+      "url": "https://jable.tv/models/#",
+      "label": "",
+      "classes": ""
+    }
+  ],
+  "listing_controls": [],
+  "performers": 20,
+  "avatar_candidates": 2,
+  "without_avatar": [
+    {
+      "name": "仲間あずみ",
+      "profile_url": "https://jable.tv/models/bfaca44240620be2f3092c294fb22fbe/"
+    },
+    {
+      "name": "大橋未久",
+      "profile_url": "https://jable.tv/models/d52d439054a2d095151691b11a99b802/"
+    },
+    {
+      "name": "上原亜衣",
+      "profile_url": "https://jable.tv/models/f5fcda107aadc340592ec5b60671c1b8/"
+    },
+    {
+      "name": "立花瑠莉",
+      "profile_url": "https://jable.tv/models/a9a8dea24d88a7d6dea79cfdd749f97c/"
+    },
+    {
+      "name": "Tiny",
+      "profile_url": "https://jable.tv/models/tiny/"
+    },
+    {
+      "name": "尾上若葉",
+      "profile_url": "https://jable.tv/models/dbfe587363e5f187594b961b03d953eb/"
+    },
+    {
+      "name": "明日花キララ",
+      "profile_url": "https://jable.tv/models/kirara-asuka/"
+    },
+    {
+      "name": "北島玲",
+      "profile_url": "https://jable.tv/models/9a9e7e432a8bf1817d155a4b6e4cabce/"
+    },
+    {
+      "name": "倖田李梨",
+      "profile_url": "https://jable.tv/models/8c495da1c617938f9e32a00d221f7a22/"
+    },
+    {
+      "name": "桜井美里",
+      "profile_url": "https://jable.tv/models/c72999e3ad1f7c36e8018f84a283103e/"
+    },
+    {
+      "name": "望月涼子",
+      "profile_url": "https://jable.tv/models/7342f30fc0b4acffccc8083f1529b157/"
+    },
+    {
+      "name": "高垣怜",
+      "profile_url": "https://jable.tv/models/7bc503e42b004a64371957472b765add/"
+    },
+    {
+      "name": "渡辺茜",
+      "profile_url": "https://jable.tv/models/a295a49a530517f2b2e4ea725a4672d8/"
+    },
+    {
+      "name": "あまつか亜夢",
+      "profile_url": "https://jable.tv/models/76deee4a66140394afb9b342222318c9/"
+    },
+    {
+      "name": "河北彩花",
+      "profile_url": "https://jable.tv/models/saika-kawakita/"
+    },
+    {
+      "name": "小宵こなん",
+      "profile_url": "https://jable.tv/models/20d0c4a34eda32e442cc3ff532f568fd/"
+    },
+    {
+      "name": "天音りせ",
+      "profile_url": "https://jable.tv/models/2b1eac8f3806062163c2bf6b70e090bc/"
+    },
+    {
+      "name": "楓カレン",
+      "profile_url": "https://jable.tv/models/kaede-karen/"
+    }
+  ],
+  "rejected": [
+    {
+      "reason": "invalid_model_card"
+    },
+    {
+      "reason": "invalid_model_card"
+    },
+    {
+      "reason": "invalid_model_card"
+    },
+    {
+      "reason": "invalid_model_card"
+    },
+    {
+      "reason": "invalid_model_card"
+    },
+    {
+      "reason": "invalid_model_card"
+    }
+  ],
+  "projection_sha256": "a9081c0aba590a8870507212ba9db5743670cbade3be2c90acb93eafd6747a98",
+  "sample_kind": "sanitized_browser_dom_projection"
+}

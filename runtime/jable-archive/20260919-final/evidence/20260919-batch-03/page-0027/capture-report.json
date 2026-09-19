@@ -1,0 +1,79 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/27/",
+  "checked_at": "2026-09-18T16:57:20.888Z",
+  "status": "captured",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "initial_http_status": 200,
+  "response_sha256": "200d8bf9de1093d764212144a628ebf380862affa72f5fa7269ccb4f314d71ac",
+  "response_bytes": 60390,
+  "challenge_detected": false,
+  "discovered_pages": [
+    1,
+    25,
+    26,
+    28,
+    29,
+    214
+  ],
+  "performers": 20,
+  "avatar_candidates": 7,
+  "without_avatar": [
+    {
+      "name": "水川すみれ",
+      "profile_url": "https://jable.tv/models/3027acf37366e27e293c6eaa2c46a569/"
+    },
+    {
+      "name": "碧木凜",
+      "profile_url": "https://jable.tv/models/2788a9d25e6b1d20206e834c8c83afaf/"
+    },
+    {
+      "name": "柏木ふみか",
+      "profile_url": "https://jable.tv/models/1de64001278ff4655595c957339d8040/"
+    },
+    {
+      "name": "優木いおり",
+      "profile_url": "https://jable.tv/models/916f8cbb116a35ab72b1586896be2eac/"
+    },
+    {
+      "name": "葉山りん",
+      "profile_url": "https://jable.tv/models/b2bcdd847ccf5e78c33f704b97d449a1/"
+    },
+    {
+      "name": "瀬乃みなみ",
+      "profile_url": "https://jable.tv/models/3c9c190832564a09b2290d4263d25fb1/"
+    },
+    {
+      "name": "MIRANO",
+      "profile_url": "https://jable.tv/models/mirano/"
+    },
+    {
+      "name": "桃瀬ゆり",
+      "profile_url": "https://jable.tv/models/7bcae0549f47ac561d1e0fc371fc25d7/"
+    },
+    {
+      "name": "絵恋空",
+      "profile_url": "https://jable.tv/models/a07c445bb83bff55c40e4309e8fc1dfb/"
+    },
+    {
+      "name": "武藤あやか",
+      "profile_url": "https://jable.tv/models/f239ab597ee71d86d494c6f22416f633/"
+    },
+    {
+      "name": "桜羽のどか",
+      "profile_url": "https://jable.tv/models/10d373ce3080184559636fab88b85634/"
+    },
+    {
+      "name": "朝日りお",
+      "profile_url": "https://jable.tv/models/ad0935cfa1449ab126dde2b0c0929ad0/"
+    },
+    {
+      "name": "坂本なつ歩",
+      "profile_url": "https://jable.tv/models/7f941606e0a7670c91409c04ed884cee/"
+    }
+  ],
+  "rejected": [],
+  "projection_sha256": "5c21cadcc597a1556b80dcc6549fdf4671e617989e0f9ed789bb6d9fff836c24",
+  "sample_kind": "sanitized_browser_dom_projection"
+}

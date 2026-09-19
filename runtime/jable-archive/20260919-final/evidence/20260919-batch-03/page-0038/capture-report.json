@@ -1,0 +1,91 @@
+{
+  "source_id": "jable_reference",
+  "source_url": "https://jable.tv/models/38/",
+  "checked_at": "2026-09-18T16:59:26.575Z",
+  "status": "captured",
+  "downloaded_images": 0,
+  "full_site_coverage": false,
+  "initial_http_status": 200,
+  "response_sha256": "ba4ed4c3a3a483a18b0f40a7bf83daadf1f5ce106da99ae9509bfd50df59df21",
+  "response_bytes": 59991,
+  "challenge_detected": false,
+  "discovered_pages": [
+    1,
+    36,
+    37,
+    39,
+    40,
+    214
+  ],
+  "performers": 20,
+  "avatar_candidates": 4,
+  "without_avatar": [
+    {
+      "name": "中村亚理沙",
+      "profile_url": "https://jable.tv/models/ccfb729347f7d7617dd10d805d915ab6/"
+    },
+    {
+      "name": "葵百合香",
+      "profile_url": "https://jable.tv/models/6defcb91f4d3d78482e639394d266863/"
+    },
+    {
+      "name": "日下部加奈",
+      "profile_url": "https://jable.tv/models/dfea76fd68bc52e0888a78e0fedce073/"
+    },
+    {
+      "name": "鳳ユメ",
+      "profile_url": "https://jable.tv/models/5c3dc9ade34bc2513406cbe42c468f9b/"
+    },
+    {
+      "name": "笹原カレン",
+      "profile_url": "https://jable.tv/models/7a610077551ff14fc7691a025c4412a2/"
+    },
+    {
+      "name": "神尾舞",
+      "profile_url": "https://jable.tv/models/94b2f47d76235218230c6ab2de6081d3/"
+    },
+    {
+      "name": "蓮美柚香",
+      "profile_url": "https://jable.tv/models/ed8e243813f47fd154b0f20e66ab8ab7/"
+    },
+    {
+      "name": "望月りさ",
+      "profile_url": "https://jable.tv/models/5c3af40634b09e905f17a91401444f2e/"
+    },
+    {
+      "name": "雨宮ひびき",
+      "profile_url": "https://jable.tv/models/8b3374ffac5ab84951432eaeb6d0330c/"
+    },
+    {
+      "name": "美谷朱音",
+      "profile_url": "https://jable.tv/models/c0030d2d6f91c15f00cb5e7961e3869c/"
+    },
+    {
+      "name": "麻生めい",
+      "profile_url": "https://jable.tv/models/c21017ee8745b20d4967205a9009aca5/"
+    },
+    {
+      "name": "香山亜衣",
+      "profile_url": "https://jable.tv/models/8009745828af30e8154fbf323db26de4/"
+    },
+    {
+      "name": "河原かえで",
+      "profile_url": "https://jable.tv/models/e3c6438b1eee687d3f4367611f84cd0a/"
+    },
+    {
+      "name": "竹内夏希",
+      "profile_url": "https://jable.tv/models/f15d919522fe58f83af4061a9ee22986/"
+    },
+    {
+      "name": "麻倉なな",
+      "profile_url": "https://jable.tv/models/b453852ef5a42d0913a4ab0f6da6d6ba/"
+    },
+    {
+      "name": "沖宮那美",
+      "profile_url": "https://jable.tv/models/1cc37e228dfa6e3f4a78e00980b58cb9/"
+    }
+  ],
+  "rejected": [],
+  "projection_sha256": "8fa65afaba363e748c8731bc46df7fecc8bd435d1c5e7d02d05c32da9181a0a1",
+  "sample_kind": "sanitized_browser_dom_projection"
+}

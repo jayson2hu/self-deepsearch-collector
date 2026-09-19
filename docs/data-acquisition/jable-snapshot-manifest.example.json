@@ -1,0 +1,15 @@
+{
+  "source_id": "jable_reference",
+  "connector_version": "jable-html@2026-09-19.1",
+  "checked_at": "2026-09-17T14:00:00Z",
+  "samples": [
+    {
+      "file": "models.html",
+      "url": "https://jable.tv/models/"
+    },
+    {
+      "file": "model-example.html",
+      "url": "https://jable.tv/models/replace-with-real-public-model-slug/"
+    }
+  ]
+}

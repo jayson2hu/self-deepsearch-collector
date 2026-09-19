@@ -1,5 +1,5 @@
 {
-  "version": "collection-design@2026-09-16",
+  "version": "collection-design@2026-09-16.1",
   "evidence_date": "2026-09-16",
   "sources": [
     {
@@ -22,32 +22,41 @@
       "name": "JavDB",
       "domain": "javdb.com",
       "source_type": "public_web",
-      "status": "unverified",
+      "status": "sample_verified",
       "network_enabled": false,
-      "role": "拟作目录元数据候选来源，字段与可用性待实测",
-      "connector_version": null,
-      "robots_status": "unverified",
+      "role": "目录元数据候选来源；已完成两个公开详情样本解析，自动联网仍待准入",
+      "connector_version": "javdb-html@2026-09-16.1",
+      "robots_status": "observed_200_crawl_delay_20",
       "terms_status": "unverified",
       "rights_status": "needs_review",
-      "probe_result": "proxy_connect_200_tls_reset",
-      "verified_fields": [],
-      "proposed_fields": ["canonical_code", "title", "release_date", "studio_name", "performer_aliases"]
+      "probe_result": "proxy_robots_200_home_200_detail_200_actor_list_200_39_avatars",
+      "minimum_interval_seconds": 20,
+      "sample_count": 2,
+      "actor_sample_count": 1,
+      "verified_performers": 39,
+      "verified_fields": ["canonical_code", "title", "release_date", "studio_name", "performer_aliases", "performer_name", "performer_avatar"],
+      "proposed_fields": ["canonical_code", "title", "release_date", "studio_name", "performer_aliases", "performer_name", "performer_avatar"]
     },
     {
       "id": "jable_reference",
       "name": "Jable",
       "domain": "jable.tv",
       "source_type": "public_web",
-      "status": "unverified",
+      "status": "sample_verified",
       "network_enabled": false,
-      "role": "拟作作品身份交叉核对来源；站点上架时间不能当作发行日期",
-      "connector_version": null,
-      "robots_status": "unverified",
+      "role": "公开演员姓名、来源 ID、列表作品数与普通头像候选；人工触发的隐私浏览器采集已验证，生产调度仍未启用",
+      "connector_version": "jable-html@2026-09-19.1",
+      "robots_status": "observed_200",
       "terms_status": "unverified",
       "rights_status": "needs_review",
-      "probe_result": "connection_timeout",
-      "verified_fields": [],
-      "proposed_fields": ["canonical_code", "title", "performer_aliases"]
+      "probe_result": "2026-09-19_proxy_http_403_isolated_headed_chrome_public_models_200_portraits_downloaded",
+      "evidence_date": "2026-09-19",
+      "verified_listing_pages": 214,
+      "verified_performers": 4196,
+      "verified_avatars": 130,
+      "full_site_coverage": false,
+      "verified_fields": ["performer_name", "performer_avatar", "performer_list_work_count"],
+      "proposed_fields": ["performer_name", "performer_avatar", "performer_list_work_count"]
     }
   ],
   "proposed_limits": {
