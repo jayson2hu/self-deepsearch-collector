@@ -4,6 +4,8 @@
 
 当前已接入固定版本的 **JavDB 真实页面解析器**，并用公开详情页验证番号、标题、发行日期、片商、演员和图片候选；Jable 现已通过隔离浏览器验证公开演员列表采集、普通头像下载、逐页入库、断点续采和可迁移归档。仓库还提供人工触发的有界联网采集、SQLite 数据基座、私有媒体 staging、self-deepsearch 暂存导出和真实数据验收页。生产定时调度、无限增量和 PostgreSQL 正式发布仍未启用；来源条款与权利状态未完成前，`network_enabled` 保持 `false`。可运行能力与真实数据测试步骤见[远端电脑测试手册](./docs/REMOTE_DATA_TEST.md)。
 
+要在另一个项目中同步已验收的 Jable 演员数据，直接把 [Jable 数据跨项目同步执行手册](./docs/JABLE_DATA_SYNC_GUIDE.md) 交给执行者。
+
 ## 开始测试
 
 要求：Python 3.12+、Node.js 22+。合成管线和演示构建没有 Python 第三方依赖，不需要 Docker、Go、数据库或生产凭据。
