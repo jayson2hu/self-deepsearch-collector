@@ -13,7 +13,7 @@
     "test:collection-demo": "node scripts/test_collection_demo.mjs",
     "test:real-showcase": "node scripts/test_real_showcase.mjs",
     "capture:jable": "node scripts/capture_jable_models.mjs",
-    "test:jable-capture": "node --test --test-isolation=none scripts/tests/jable_capture.test.mjs",
+    "test:jable-capture": "node scripts/tests/jable_capture.test.mjs",
     "test:jable-showcase": "node scripts/test_jable_showcase.mjs",
     "check:markdown-links": "node scripts/check_markdown_links.mjs",
     "test": "npm run test:collector && npm run test:collection-config && npm run check:markdown-links"
