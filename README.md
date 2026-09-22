@@ -6,6 +6,8 @@
 
 要在另一个项目中同步已验收的 Jable 演员数据，直接把 [Jable 数据跨项目同步执行手册](./docs/JABLE_DATA_SYNC_GUIDE.md) 交给执行者。
 
+现有 SQLite 人物元数据现可通过版本化 HTTP 合同交给主平台：确定性批次导出、hash 校验、断点续传、原样重放和逐批持久回执已接入，使用方法见[人物候选元数据交接 v1](./docs/COLLECTOR_DELIVERY_V1.md)。该链路只暂存待审核候选，不自动发布人物或头像。
+
 ## 开始测试
 
 要求：Python 3.12+、Node.js 22+。合成管线和演示构建没有 Python 第三方依赖，不需要 Docker、Go、数据库或生产凭据。

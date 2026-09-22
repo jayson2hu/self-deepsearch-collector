@@ -5,9 +5,10 @@ import { resolvePython } from './run_python.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [command, ...rest] = process.argv.slice(2);
+const deliveryCommands = ['export-performer-batches', 'deliver-performer-batches'];
 const jableCommands = ['parse-jable-samples', 'ingest-jable-samples', 'download-jable-media', 'build-performer-showcase', 'ingest-jable-crawl', 'audit-jable', 'archive-jable', 'audit-jable-coverage'];
-if (!command || !['demo', 'test', 'probe', 'collect', 'validate', 'parse-samples', 'ingest-samples', 'export-selfdeepsearch', 'download-media', 'build-showcase', 'collect-review', ...jableCommands, 'ingest-javdb-actors', 'download-javdb-avatars', 'build-actor-showcase'].includes(command)) {
-  console.error('Usage: npm run collector -- <demo|test|probe|collect|validate|parse-samples|ingest-samples|export-selfdeepsearch|download-media|build-showcase|collect-review|parse-jable-samples|ingest-jable-samples|download-jable-media|build-performer-showcase|ingest-javdb-actors|download-javdb-avatars|build-actor-showcase> [arguments]');
+if (!command || !['demo', 'test', 'probe', 'collect', 'validate', 'parse-samples', 'ingest-samples', 'export-selfdeepsearch', 'download-media', 'build-showcase', 'collect-review', ...jableCommands, ...deliveryCommands, 'ingest-javdb-actors', 'download-javdb-avatars', 'build-actor-showcase'].includes(command)) {
+  console.error('Usage: npm run collector -- <demo|test|probe|collect|validate|parse-samples|ingest-samples|export-selfdeepsearch|download-media|build-showcase|collect-review|export-performer-batches|deliver-performer-batches|parse-jable-samples|ingest-jable-samples|download-jable-media|build-performer-showcase|ingest-javdb-actors|download-javdb-avatars|build-actor-showcase> [arguments]');
   process.exitCode = 2;
 } else {
   const python = resolvePython();
@@ -32,6 +33,8 @@ if (!command || !['demo', 'test', 'probe', 'collect', 'validate', 'parse-samples
           ? ['-m', 'collector.showcase', ...rest]
         : command === 'collect-review'
           ? ['-m', 'collector.live', ...rest]
+        : deliveryCommands.includes(command)
+          ? ['-m', 'collector.delivery', command, ...rest]
         : jableCommands.includes(command)
           ? ['-m', 'collector.jable_assets', command, ...rest]
         : ['ingest-javdb-actors', 'download-javdb-avatars', 'build-actor-showcase'].includes(command)
