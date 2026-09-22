@@ -12,6 +12,8 @@
 
 全量公开演员采集、普通头像及缺项补全使用[全量演员任务手册](./docs/ACTOR_FULL_COLLECTION.md)：`plan-actor-tasks / run-actor-tasks / report-actor-tasks` 将任务持久化到 SQLite，支持来源停止和断点恢复。已保存数据的目录见[项目与主要数据指南](./docs/PROJECT_DATA_GUIDE.md)。
 
+前端改版见[全面优化计划](./docs/FRONTEND_OPTIMIZATION_PLAN.md)。已有本地演员工作区时，运行 `npm run build:frontend-preview`，再打开 `runtime/frontend-preview/20260922/index.html`，即可查看真实快照驱动的概览、演员资料、资料缺项、采集任务和来源状态。样稿支持搜索、分页、详情及筛选导出；执行任务和资料编辑列入后续接口接入。
+
 要求：Python 3.12+、Node.js 22+。合成管线和演示构建没有 Python 第三方依赖，不需要 Docker、Go、数据库或生产凭据。
 
 ```bash
