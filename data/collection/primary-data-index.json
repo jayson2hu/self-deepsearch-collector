@@ -1,0 +1,60 @@
+{
+  "schema_version": "primary-data-index@1",
+  "review_date": "2026-09-22",
+  "timezone": "Asia/Shanghai",
+  "source_id": "jable_reference",
+  "acquisition_mode": "verified_local_archive",
+  "source_archive": "runtime/jable-archive/20260919-final",
+  "source_collection_date_local": "2026-09-19",
+  "prepared_directory": "runtime/primary-data/20260922",
+  "prepare_command": "npm run data:prepare -- --output-dir runtime/primary-data/20260922",
+  "paths": {
+    "database": "collector.db",
+    "profiles_jsonl": "profiles/performers.jsonl",
+    "profiles_csv": "profiles/performers.csv",
+    "avatars": "media/",
+    "media_records": "performer_media_candidates.jsonl",
+    "platform_export": "selfdeepsearch-export/",
+    "preview": "preview/index.html",
+    "audit": "data-audit.json",
+    "inventory": "inventory.json",
+    "checksums": "files-manifest.json",
+    "validation": "validation-report.json",
+    "browser_validation": "preview/browser-report.json"
+  },
+  "counts": {
+    "performers": 4196,
+    "performers_with_work_count": 4196,
+    "performer_observations": 4217,
+    "collection_runs": 228,
+    "avatars": 130,
+    "missing_avatars": 4066,
+    "works": 0,
+    "verified_archive_files": 804
+  },
+  "source_refresh": {
+    "report": "runtime/source-check/20260922/report.json",
+    "status": "network_unavailable",
+    "new_online_records": 0
+  },
+  "missing_datasets": [
+    "javdb_local_source_data"
+  ],
+  "full_site_coverage": false,
+  "rights_status": "needs_review",
+  "publication_status": "staging",
+  "generated_data_tracked_in_git": false,
+  "active_collection": {
+    "directory": "runtime/actor-collection/20260922-full",
+    "status": "partial_collection_sources_blocked",
+    "summary": "collection-summary.json",
+    "tasks": "task-report.json",
+    "performers": "exports/performers.jsonl",
+    "missing_fields": "exports/missing-fields.jsonl",
+    "current_performers": 4196,
+    "current_observations": 4219,
+    "current_avatars": 130,
+    "new_content_observations": 2,
+    "all_data_collected": false
+  }
+}

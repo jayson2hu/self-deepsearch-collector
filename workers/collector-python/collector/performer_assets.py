@@ -8,6 +8,7 @@ import shutil
 import time
 import urllib.error
 import urllib.request
+from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -34,7 +35,43 @@ def ingest_javdb_actor_snapshot(
     (output_dir / "performers.jsonl").write_text(
         "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in candidates), encoding="utf-8",
     )
+    report = {
+        **ingest_javdb_actor_candidates(candidates, database, checked_at=checked_at),
+        "input_file": str(input_path),
+        "input_bytes": len(raw),
+        "input_sha256": hashlib.sha256(raw).hexdigest(),
+    }
+    _write_json(output_dir / "ingest-report.json", report)
+    return report
+
+
+def _observation_time(value: str) -> datetime:
+    timestamp = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if timestamp.tzinfo is None:
+        raise ValueError("checked_at must include a timezone")
+    return timestamp.astimezone(UTC)
+
+
+def ingest_javdb_actor_candidates(
+    candidates: list[dict[str, object]],
+    database: Path,
+    *,
+    checked_at: str,
+) -> dict[str, object]:
+    """Store parsed actor candidates without requiring a raw HTML file on disk.
+
+    Candidate payloads remain exact source observations. Historical aliases and
+    avatars belong to the observation/media tables and are never copied into a
+    newer candidate to fill missing fields.
+    """
+    observed_at = _observation_time(checked_at)
+    for candidate in candidates:
+        if candidate.get("source_id") != SOURCE_ID or candidate.get("entity_type") != "performer":
+            raise ValueError("expected parsed JavDB performer candidates")
+        if candidate.get("provenance", {}).get("checked_at") != checked_at:
+            raise ValueError("candidate checked_at must match the ingestion checked_at")
     connection = connect(database)
+    new_observations = 0
     try:
         run_id = start_run(
             connection, source_id=SOURCE_ID, connector_version=CONNECTOR_VERSION,
@@ -45,6 +82,11 @@ def ingest_javdb_actor_snapshot(
             external_id = str(candidate["external_id"])
             performer_id = performer_entity_id(SOURCE_ID, external_id)
             payload = candidate["payload"]
+            previous = connection.execute(
+                "SELECT checked_at FROM performers WHERE source_id=? AND external_id=?",
+                (SOURCE_ID, external_id),
+            ).fetchone()
+            is_current = previous is None or observed_at >= _observation_time(previous["checked_at"])
             connection.execute(
                 """
                 INSERT INTO performers (
@@ -55,11 +97,12 @@ def ingest_javdb_actor_snapshot(
                   name=excluded.name, profile_url=excluded.profile_url,
                   current_content_hash=excluded.current_content_hash,
                   checked_at=excluded.checked_at, updated_at=excluded.updated_at
+                WHERE ?
                 """,
                 (performer_id, SOURCE_ID, external_id, payload["name"], payload["profile_url"],
-                 candidate["content_hash"], checked_at, timestamp, timestamp),
+                 candidate["content_hash"], checked_at, timestamp, timestamp, is_current),
             )
-            connection.execute(
+            observation = connection.execute(
                 """
                 INSERT OR IGNORE INTO performer_observations (
                   source_id, external_id, content_hash, run_id, candidate_json, checked_at, created_at
@@ -68,6 +111,7 @@ def ingest_javdb_actor_snapshot(
                 (SOURCE_ID, external_id, candidate["content_hash"], run_id,
                  json.dumps(candidate, ensure_ascii=False, separators=(",", ":")), checked_at, timestamp),
             )
+            new_observations += observation.rowcount
             for item in candidate["media"]:
                 connection.execute(
                     """
@@ -79,6 +123,7 @@ def ingest_javdb_actor_snapshot(
                     ON CONFLICT(media_candidate_id) DO UPDATE SET
                       checked_at=excluded.checked_at, connector_version=excluded.connector_version,
                       updated_at=excluded.updated_at
+                    WHERE julianday(excluded.checked_at) >= julianday(performer_media_candidates.checked_at)
                     """,
                     (item["media_candidate_id"], performer_id, SOURCE_ID, external_id,
                      item["candidate_url"], item["source_page_url"], item["purpose"],
@@ -101,18 +146,15 @@ def ingest_javdb_actor_snapshot(
         }
     finally:
         connection.close()
-    report = {
+    return {
         "source_id": SOURCE_ID,
         "connector_version": CONNECTOR_VERSION,
-        "input_file": str(input_path),
-        "input_bytes": len(raw),
-        "input_sha256": hashlib.sha256(raw).hexdigest(),
         "run_id": run_id,
         "database": str(database),
+        "parsed_this_run": len(candidates),
+        "new_observations_this_run": new_observations,
         **counts,
     }
-    _write_json(output_dir / "ingest-report.json", report)
-    return report
 
 
 def download_javdb_avatars(

@@ -7,11 +7,12 @@ import shutil
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-from collector.connectors.jable import CONNECTOR_VERSION, SOURCE_ID, parse_jable_html, performer_content_hash
+from collector.connectors.jable import CONNECTOR_VERSION, SOURCE_ID, _media_url, parse_jable_html, performer_content_hash
 from collector.media import MAX_IMAGE_BYTES, NoRedirect, inspect_image
 from collector.storage import complete_run, connect, now_iso, performer_entity_id, start_run
 
@@ -24,7 +25,7 @@ def _read_manifest(path: Path) -> dict[str, Any]:
     manifest = json.loads(path.read_text(encoding="utf-8"))
     if manifest.get("source_id") != SOURCE_ID:
         raise ValueError(f"source_id must be {SOURCE_ID}")
-    if manifest.get("connector_version") not in {CONNECTOR_VERSION, "jable-html@2026-09-17.1"}:
+    if manifest.get("connector_version") not in {CONNECTOR_VERSION, "jable-html@2026-09-19.1", "jable-html@2026-09-17.1"}:
         raise ValueError(f"connector_version must be {CONNECTOR_VERSION}")
     checked_at = manifest.get("checked_at")
     if not isinstance(checked_at, str) or not checked_at:
@@ -38,7 +39,7 @@ def _read_manifest(path: Path) -> dict[str, Any]:
 def parse_jable_manifest(manifest_path: Path, output_dir: Path) -> dict[str, Any]:
     manifest = _read_manifest(manifest_path)
     manifest_root = manifest_path.parent.resolve()
-    merged: dict[str, dict[str, Any]] = {}
+    observations: list[dict[str, Any]] = []
     sample_reports = []
     for sample in manifest["samples"]:
         if not isinstance(sample, dict) or not isinstance(sample.get("file"), str) or not isinstance(sample.get("url"), str):
@@ -50,26 +51,20 @@ def parse_jable_manifest(manifest_path: Path, output_dir: Path) -> dict[str, Any
         if len(raw) > 2 * 1024 * 1024:
             raise ValueError("Jable sample exceeds 2 MiB")
         text = raw.decode("utf-8")
-        candidates = parse_jable_html(text, source_url=sample["url"], checked_at=manifest["checked_at"])
-        for candidate in candidates:
-            external_id = str(candidate["external_id"])
-            existing = merged.get(external_id)
-            if not existing:
-                merged[external_id] = candidate
-                continue
-            media_by_url = {item["candidate_url"]: item for item in existing["media"]}
-            media_by_url.update({item["candidate_url"]: item for item in candidate["media"]})
-            existing["media"] = sorted(media_by_url.values(), key=lambda item: (item["purpose"] != "avatar", item["display_position"]))
-            if existing["payload"]["name"] == external_id and candidate["payload"]["name"] != external_id:
-                existing["payload"]["name"] = candidate["payload"]["name"]
-            existing["content_hash"] = performer_content_hash(existing)
+        checked_at = sample.get("checked_at", manifest["checked_at"])
+        if not isinstance(checked_at, str) or not checked_at:
+            raise ValueError("sample checked_at must be a nonempty timestamp")
+        candidates = parse_jable_html(text, source_url=sample["url"], checked_at=checked_at)
+        observations.extend(candidates)
         sample_reports.append({
             "file": sample["file"], "url": sample["url"], "bytes": len(raw),
             "sha256": hashlib.sha256(raw).hexdigest(), "performers": len(candidates),
         })
 
-    performers = sorted(merged.values(), key=lambda item: str(item["payload"]["name"]).casefold())
-    media = [item for performer in performers for item in performer["media"]]
+    # Each line is one actual page observation. Combining page fields here would
+    # falsely attribute older listing facts to a later profile capture.
+    performers = sorted(observations, key=lambda item: str(item["payload"].get("name", item["external_id"])).casefold())
+    media = list({item["media_candidate_id"]: item for performer in performers for item in performer["media"]}.values())
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "performers.jsonl").write_text(
         "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in performers), encoding="utf-8",
@@ -83,7 +78,8 @@ def parse_jable_manifest(manifest_path: Path, output_dir: Path) -> dict[str, Any
         "network_access": False,
         "sample_kind": manifest.get("sample_kind", "provided_html_snapshot"),
         "samples": sample_reports,
-        "performers": len(performers),
+        "performers": len({item["external_id"] for item in performers}),
+        "observations": len(performers),
         "avatar_candidates": sum(item["purpose"] == "avatar" for item in media),
         "gallery_candidates": sum(item["purpose"] == "gallery" for item in media),
     }
@@ -95,18 +91,67 @@ def ingest_jable_manifest(manifest_path: Path, database: Path, output_dir: Path)
     report = parse_jable_manifest(manifest_path, output_dir)
     candidates = [json.loads(line) for line in (output_dir / "performers.jsonl").read_text(encoding="utf-8").splitlines() if line]
     manifest = _read_manifest(manifest_path)
+    result = {**report, **ingest_jable_candidates(candidates, database, checked_at=manifest["checked_at"])}
+    _write_json(output_dir / "ingest-report.json", result)
+    return result
+
+
+def load_current_performer_payloads(connection, *, source_id: str = SOURCE_ID) -> dict[str, dict[str, Any]]:
+    """Resolve latest nonempty fields without synthesizing source observations.
+
+    Provenance belongs to the observation that supplied each field, and therefore
+    keeps its original timestamp when a newer profile omits a listing-only fact.
+    """
+    resolved: dict[str, dict[str, Any]] = {}
+    rows = connection.execute(
+        """SELECT external_id, content_hash, candidate_json, checked_at
+           FROM performer_observations WHERE source_id=?
+           ORDER BY julianday(checked_at), created_at, rowid""", (source_id,),
+    )
+    for row in rows:
+        candidate = json.loads(row["candidate_json"])
+        current = resolved.setdefault(row["external_id"], {"payload": {}, "field_provenance": {}})
+        provenance = candidate.get("provenance", {})
+        for key, value in candidate.get("payload", {}).items():
+            if value is None or value == "" or value == [] or value == {}:
+                continue
+            current["payload"][key] = value
+            current["field_provenance"][key] = {
+                "source_url": provenance.get("source_url"), "checked_at": row["checked_at"],
+                "content_hash": row["content_hash"], "connector_version": provenance.get("connector_version"),
+            }
+    return resolved
+
+
+def ingest_jable_candidates(candidates: list[dict[str, Any]], database: Path, *, checked_at: str) -> dict[str, Any]:
+    """Persist already parsed candidates, retaining their original source facts."""
+    for candidate in candidates:
+        if candidate.get("source_id") != SOURCE_ID or performer_content_hash(candidate) != candidate.get("content_hash"):
+            raise ValueError("Jable candidate source or content hash mismatch")
+        observed_at = datetime.fromisoformat(candidate["provenance"]["checked_at"].replace("Z", "+00:00"))
+        if observed_at.tzinfo is None:
+            raise ValueError("Jable candidate checked_at must include a timezone")
+        if any(item.get("purpose") != "avatar" or _media_url(item["candidate_url"], item["source_page_url"]) != item["candidate_url"] for item in candidate["media"]):
+            raise ValueError("Jable candidate contains an unsupported portrait URL or media purpose")
     connection = connect(database)
+    run_id = None
     try:
         run_id = start_run(
             connection, source_id=SOURCE_ID, connector_version=CONNECTOR_VERSION,
-            checked_at=manifest["checked_at"], discovered_count=len(candidates),
+            checked_at=checked_at, discovered_count=len(candidates),
         )
-        for candidate in candidates:
+        for candidate in sorted(candidates, key=lambda item: not bool(item["payload"].get("name"))):
             timestamp = now_iso()
             external_id = str(candidate["external_id"])
             performer_id = performer_entity_id(SOURCE_ID, external_id)
             payload = candidate["payload"]
             checked_at = candidate["provenance"]["checked_at"]
+            existing = connection.execute(
+                "SELECT name FROM performers WHERE source_id=? AND external_id=?", (SOURCE_ID, external_id),
+            ).fetchone()
+            name = payload.get("name") or (existing["name"] if existing else None)
+            if not name:
+                raise ValueError(f"Jable performer {external_id} has no observed name and no existing record")
             connection.execute(
                 """
                 INSERT INTO performers (
@@ -117,8 +162,9 @@ def ingest_jable_manifest(manifest_path: Path, database: Path, output_dir: Path)
                   name=excluded.name, profile_url=excluded.profile_url,
                   current_content_hash=excluded.current_content_hash,
                   checked_at=excluded.checked_at, updated_at=excluded.updated_at
+                WHERE julianday(excluded.checked_at) >= julianday(performers.checked_at)
                 """,
-                (performer_id, SOURCE_ID, external_id, payload["name"], payload["profile_url"],
+                (performer_id, SOURCE_ID, external_id, name, payload["profile_url"],
                  candidate["content_hash"], checked_at, timestamp, timestamp),
             )
             connection.execute(
@@ -142,6 +188,7 @@ def ingest_jable_manifest(manifest_path: Path, database: Path, output_dir: Path)
                       display_position=excluded.display_position, checked_at=excluded.checked_at,
                       source_page_url=excluded.source_page_url,
                       connector_version=excluded.connector_version, updated_at=excluded.updated_at
+                    WHERE julianday(excluded.checked_at) >= julianday(performer_media_candidates.checked_at)
                     """,
                     (item["media_candidate_id"], performer_id, SOURCE_ID, external_id,
                      item["candidate_url"], item["source_page_url"], item["purpose"],
@@ -162,11 +209,15 @@ def ingest_jable_manifest(manifest_path: Path, database: Path, output_dir: Path)
             "observations": int(connection.execute("SELECT COUNT(*) FROM performer_observations WHERE source_id=?", (SOURCE_ID,)).fetchone()[0]),
             "media_candidates": int(connection.execute("SELECT COUNT(*) FROM performer_media_candidates WHERE source_id=?", (SOURCE_ID,)).fetchone()[0]),
         }
+    except Exception:
+        connection.rollback()
+        if run_id is not None:
+            connection.execute("UPDATE collection_runs SET status='failed', completed_at=?, error_count=error_count+1 WHERE run_id=?", (now_iso(), run_id))
+            connection.commit()
+        raise
     finally:
         connection.close()
-    result = {**report, "run_id": run_id, "database": str(database), "database_counts": counts}
-    _write_json(output_dir / "ingest-report.json", result)
-    return result
+    return {"run_id": run_id, "database": str(database), "database_counts": counts}
 
 
 def download_jable_media(
@@ -226,7 +277,7 @@ def download_jable_media(
             parsed = urlparse(url)
             host = (parsed.hostname or "").lower()
             try:
-                if parsed.scheme != "https" or host != "assets-cdn.jable.tv" or not parsed.path.startswith("/contents/models/"):
+                if _media_url(url, url) != url or host != "assets-cdn.jable.tv" or not parsed.path.startswith("/contents/models/"):
                     raise ValueError("Jable download must be an observed model portrait on the approved CDN")
                 if parsed.username or parsed.password or parsed.query or parsed.fragment or parsed.port not in (None, 443):
                     raise ValueError("Jable media URL contains forbidden components")
@@ -300,6 +351,7 @@ def build_performer_showcase(database: Path, output_dir: Path) -> dict[str, Any]
             """,
             (SOURCE_ID,),
         )]
+        current_payloads = load_current_performer_payloads(connection)
         media_by_performer: dict[str, list[dict[str, Any]]] = {}
         for row in connection.execute(
             """
@@ -317,7 +369,10 @@ def build_performer_showcase(database: Path, output_dir: Path) -> dict[str, Any]
         connection.close()
     for performer in performers:
         observation = json.loads(performer.pop("candidate_json") or "{}")
-        performer["work_count"] = observation.get("payload", {}).get("work_count")
+        current = current_payloads.get(performer["external_id"], {"payload": {}, "field_provenance": {}})
+        performer.update(current["payload"])
+        performer.setdefault("work_count", None)
+        performer["field_provenance"] = current["field_provenance"]
         performer["source_page_url"] = observation.get("provenance", {}).get("source_url")
         performer["avatar"] = None
         performer["gallery"] = []

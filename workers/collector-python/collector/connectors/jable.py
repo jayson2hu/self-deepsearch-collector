@@ -3,12 +3,13 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from dataclasses import dataclass, field
 from html import unescape
 from html.parser import HTMLParser
 from urllib.parse import unquote, urljoin, urlparse
 
 SOURCE_ID = "jable_reference"
-CONNECTOR_VERSION = "jable-html@2026-09-19.1"
+CONNECTOR_VERSION = "jable-html@2026-09-22.1"
 
 
 def _space(value: str) -> str:
@@ -37,7 +38,9 @@ def _media_url(value: str, source_url: str) -> str | None:
         return None
     if parsed.username or parsed.password or parsed.query or parsed.fragment:
         return None
-    if parsed.port not in (None, 443) or not re.match(r"/(?:contents/)?models/", parsed.path):
+    if parsed.port not in (None, 443) or not re.fullmatch(r"/(?:contents/)?models/[^?#]+\.(?:jpe?g|png|webp)", parsed.path, re.I):
+        return None
+    if any(part in {".", ".."} for part in unquote(parsed.path).split("/")) or "%" in parsed.path or "\\" in parsed.path:
         return None
     if re.search(r"(?:logo|favicon|icon|sprite|banner)", parsed.path, re.I):
         return None
@@ -62,89 +65,185 @@ def _clean_name(value: str) -> str:
     return value.strip(" -|·")
 
 
+def _observed_name(value: str) -> str | None:
+    value = _clean_name(value)
+    if not value or len(value) > 120:
+        return None
+    if re.search(r"jable|\b(?:models?|actresses?|performers?|videos?|porn|free|hd|forbidden|search)\b|not found|access denied|最新|熱門|热门|高清|免費|免费|影片|所有女優|所有女优", value, re.I):
+        return None
+    return None if value.isdecimal() else value
+
+
+@dataclass
+class _Node:
+    tag: str
+    attrs: dict[str, str] = field(default_factory=dict)
+    parent: _Node | None = field(default=None, repr=False)
+    children: list[_Node | str] = field(default_factory=list)
+
+    def nodes(self):
+        yield self
+        for child in self.children:
+            if isinstance(child, _Node):
+                yield from child.nodes()
+
+    def text(self) -> str:
+        if self.tag in {"script", "style", "noscript"}:
+            return ""
+        return _space(" ".join(child.text() if isinstance(child, _Node) else child for child in self.children))
+
+    def ancestors(self):
+        node = self.parent
+        while node is not None:
+            yield node
+            node = node.parent
+
+
 class _JableHTMLParser(HTMLParser):
-    def __init__(self, source_url: str) -> None:
+    """Small DOM used to keep model headers separate from recommendation links."""
+
+    def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
-        self.source_url = source_url
-        self.meta: dict[str, str] = {}
-        self.title_parts: list[str] = []
-        self.heading_parts: list[str] = []
-        self.models: dict[str, dict[str, object]] = {}
-        self.avatar_images: list[str] = []
-        self._capture_title = False
-        self._capture_heading = False
-        self._active_link: dict[str, object] | None = None
-        self._capture_model_name = False
+        self.root = _Node("document")
+        self.current = self.root
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        values = {key.lower(): value or "" for key, value in attrs}
-        if tag == "meta":
-            key = (values.get("property") or values.get("name") or "").lower()
-            if key and values.get("content"):
-                self.meta[key] = values["content"]
-            return
-        if tag == "title":
-            self._capture_title = True
-            return
-        if tag in {"h1", "h2"} and not self.heading_parts:
-            self._capture_heading = True
-        if self._active_link and (tag in {"h3", "h4", "h5", "h6"} or "title" in values.get("class", "").split()):
-            self._capture_model_name = True
-        if tag == "a" and values.get("href"):
-            absolute = urljoin(self.source_url, values["href"])
-            model_id = _model_id(absolute)
-            if model_id:
-                try:
-                    absolute = _canonical_page_url(absolute)
-                except ValueError:
-                    return
-                self._active_link = {"url": absolute, "id": model_id, "text": [], "name": [], "image": None, "alt": ""}
-        if tag != "img":
-            return
-        image_value = next((values.get(key) for key in ("data-src", "data-lazy-src", "data-original", "src") if values.get(key)), "")
-        image_url = _media_url(image_value, self.source_url)
-        if not image_url:
-            return
-        image_alt = _space(values.get("alt", ""))
-        if self._active_link:
-            self._active_link["image"] = image_url
-            self._active_link["alt"] = image_alt
-            return
-        marker = " ".join((values.get("class", ""), values.get("id", ""), image_alt)).lower()
-        if any(token in marker for token in ("avatar", "model", "profile", "performer", "actress")):
-            self.avatar_images.append(image_url)
+        node = _Node(tag, {key.lower(): value or "" for key, value in attrs}, self.current)
+        self.current.children.append(node)
+        if tag not in {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}:
+            self.current = node
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.handle_starttag(tag, attrs)
+        self.handle_endtag(tag)
 
     def handle_data(self, data: str) -> None:
-        if self._capture_title:
-            self.title_parts.append(data)
-        if self._capture_heading:
-            self.heading_parts.append(data)
-        if self._active_link:
-            self._active_link["text"].append(data)  # type: ignore[union-attr]
-            if self._capture_model_name:
-                self._active_link["name"].append(data)  # type: ignore[union-attr]
+        self.current.children.append(data)
 
     def handle_endtag(self, tag: str) -> None:
-        if tag == "title":
-            self._capture_title = False
-        if tag in {"h1", "h2"}:
-            self._capture_heading = False
-        if tag in {"h3", "h4", "h5", "h6", "div", "span"}:
-            self._capture_model_name = False
-        if tag != "a" or not self._active_link:
-            return
-        link = self._active_link
-        self._active_link = None
-        image = link.get("image")
-        external_id = str(link["id"])
-        name = _clean_name(" ".join(link["name"]) or str(link.get("alt") or "") or " ".join(link["text"]))
-        existing = self.models.get(external_id, {})
-        self.models[external_id] = {
-            "name": name or existing.get("name") or external_id,
-            "profile_url": _canonical_page_url(str(link["url"])),
-            "avatar_url": str(image) if image else existing.get("avatar_url"),
-            "work_count": (int(count.group(1).replace(",", "")) if (count := re.search(r"([\d,]+)\s*部", " ".join(link["text"]))) else None),
-        }
+        for node in (self.current, *self.current.ancestors()):
+            if node.tag == tag and node.parent is not None:
+                self.current = node.parent
+                break
+
+
+def _image_url(node: _Node, source_url: str) -> str | None:
+    for key in ("data-src", "data-lazy-src", "data-original", "src"):
+        if url := _media_url(node.attrs.get(key, ""), source_url):
+            return url
+    return None
+
+
+def _listing_models(root: _Node, source_url: str) -> dict[str, dict[str, object]]:
+    models: dict[str, dict[str, object]] = {}
+    for link in root.nodes():
+        if link.tag != "a" or not link.attrs.get("href"):
+            continue
+        absolute = urljoin(source_url, link.attrs["href"])
+        external_id = _model_id(absolute)
+        if not external_id:
+            continue
+        try:
+            profile_url = _canonical_page_url(absolute)
+        except ValueError:
+            continue
+        descendants = list(link.nodes())
+        headings = [node.text() for node in descendants if node.tag in {"h3", "h4", "h5", "h6"} or "title" in node.attrs.get("class", "").split()]
+        portraits = [(node, url) for node in descendants if node.tag == "img" and (url := _image_url(node, source_url))]
+        name = next((name for raw in [*headings, *[node.attrs.get("alt", "") for node, _ in portraits], link.text()] if (name := _observed_name(raw))), None)
+        if name is None:
+            continue
+        model = models.setdefault(external_id, {"profile_url": profile_url})
+        model["name"] = name
+        if portraits:
+            model["avatar_url"] = portraits[0][1]
+        if count := re.search(r"([\d,]+)\s*部", link.text()):
+            model["work_count"] = int(count.group(1).replace(",", ""))
+    return models
+
+
+_PROFILE_FIELDS = {
+    "name": "name", "aliases": "aliases", "alternateName": "aliases",
+    "biography": "biography", "description": "biography", "birthDate": "birth_date", "birth_date": "birth_date",
+    "birthPlace": "birth_place", "birth_place": "birth_place", "nationality": "nationality",
+    "height": "height", "weight": "weight", "blood_type": "blood_type", "measurements": "measurements", "debut_date": "debut_date",
+    "work_count": "work_count",
+}
+_PROFILE_SCOPES = {"model-info", "model-header", "model-profile", "performer-profile", "profile-header"}
+
+
+def _profile_scope(node: _Node) -> bool:
+    return ("data-performer-profile" in node.attrs
+            or bool(_PROFILE_SCOPES.intersection(node.attrs.get("class", "").split()))
+            or node.attrs.get("itemtype", "").rstrip("/").endswith("/Person"))
+
+
+def _outside_other_models(node: _Node, source_url: str) -> bool:
+    for ancestor in (node, *node.ancestors()):
+        if ancestor.tag == "a" and ancestor.attrs.get("href"):
+            target = urljoin(source_url, ancestor.attrs["href"])
+            if target.rstrip("/") != source_url.rstrip("/"):
+                return False
+        marker = " ".join((ancestor.attrs.get("class", ""), ancestor.attrs.get("id", "")))
+        if re.search(r"(?:related|recommend|video-card|video-item)", marker, re.I):
+            return False
+        if ancestor.attrs.get("itemtype", "").rstrip("/").endswith(("/VideoObject", "/Movie", "/Product")):
+            return False
+    return True
+
+
+def _profile_model(root: _Node, source_url: str) -> dict[str, object]:
+    model: dict[str, object] = {"profile_url": source_url}
+    nodes = list(root.nodes())
+    for node in nodes:
+        if not _outside_other_models(node, source_url):
+            continue
+        explicit_field = node.attrs.get("data-performer-field", "")
+        scoped = any(_profile_scope(ancestor) for ancestor in (node, *node.ancestors()))
+        property_name = explicit_field or (node.attrs.get("itemprop", "") if scoped else "")
+        field_name = _PROFILE_FIELDS.get(property_name)
+        if field_name:
+            # Explicit projections and Person microdata preserve observed text;
+            # general description/OG marketing metadata is not a biography.
+            raw = node.attrs.get("content") or node.attrs.get("datetime") or node.text()
+            value = _space(raw)
+            if field_name == "name":
+                if name := _observed_name(value):
+                    model["name"] = name
+            elif field_name == "aliases":
+                aliases = [part for raw in re.split(r"[,，、;；\n]", value) if (part := _space(raw))]
+                model["aliases"] = sorted(set([*model.get("aliases", []), *aliases]))
+            elif field_name == "work_count":
+                if re.fullmatch(r"[\d,]+(?:\s*部(?:影片)?)?", value):
+                    model["work_count"] = int(re.match(r"[\d,]+", value).group().replace(",", ""))
+            elif value:
+                model[field_name] = value
+        marker = set(node.attrs.get("class", "").split())
+        if "name" not in model and field_name in {None, "name"} and (
+            node.tag == "h1" or (scoped and node.tag in {"h2", "h3"})
+            or marker.intersection({"model-name", "performer-name", "profile-name", "actress-name"})
+        ):
+            if name := _observed_name(node.text()):
+                model["name"] = name
+        if node.tag == "img" and "avatar_url" not in model:
+            image_marker = " ".join((node.attrs.get("class", ""), node.attrs.get("id", ""))).lower()
+            if scoped or any(token in image_marker for token in ("avatar", "model", "profile", "performer", "actress")):
+                if url := _image_url(node, source_url):
+                    model["avatar_url"] = url
+    if "avatar_url" not in model:
+        for node in nodes:
+            if node.tag == "meta" and node.attrs.get("property", "").lower() == "og:image":
+                if url := _media_url(node.attrs.get("content", ""), source_url):
+                    model["avatar_url"] = url
+                    break
+    if not model.get("name"):
+        # An exact self-link supplies an observed name; never derive one from a slug.
+        self_card = _listing_models(root, source_url).get(_model_id(source_url), {})
+        if self_card.get("name"):
+            model["name"] = self_card["name"]
+    if len(model) == 1:
+        raise ValueError("Jable profile contains no observed performer fields")
+    return model
 
 
 def parse_jable_html(html_text: str, *, source_url: str, checked_at: str) -> list[dict[str, object]]:
@@ -154,36 +253,20 @@ def parse_jable_html(html_text: str, *, source_url: str, checked_at: str) -> lis
         raise ValueError("Jable sample is a Cloudflare challenge page")
     if len(html_text.encode("utf-8")) > 2 * 1024 * 1024:
         raise ValueError("Jable sample exceeds 2 MiB")
-    parser = _JableHTMLParser(canonical_url)
+    parser = _JableHTMLParser()
     parser.feed(html_text)
+    parser.close()
 
     profile_id = _model_id(canonical_url)
-    if profile_id:
-        name = _clean_name(
-            parser.meta.get("og:title", "")
-            or " ".join(parser.heading_parts)
-            or " ".join(parser.title_parts)
-            or profile_id
-        )
-        avatar_url = _media_url(parser.meta.get("og:image", ""), canonical_url)
-        if not avatar_url and parser.avatar_images:
-            avatar_url = parser.avatar_images[0]
-        parser.models[profile_id] = {
-            "name": name or profile_id,
-            "profile_url": canonical_url,
-            "avatar_url": avatar_url,
-        }
-
+    models = ({profile_id: _profile_model(parser.root, canonical_url)} if profile_id
+              else _listing_models(parser.root, canonical_url))
     candidates: list[dict[str, object]] = []
-    for external_id, model in sorted(parser.models.items()):
-        profile_url = str(model["profile_url"])
+    for external_id, model in sorted(models.items()):
         media: list[dict[str, object]] = []
         avatar_url = model.get("avatar_url")
         if avatar_url:
             media.append(_media_candidate(external_id, str(avatar_url), canonical_url, "avatar", 0, checked_at))
-        payload = {"name": str(model["name"]), "profile_url": profile_url}
-        if model.get("work_count") is not None:
-            payload["work_count"] = model["work_count"]
+        payload = {key: value for key, value in model.items() if key != "avatar_url"}
         stable = {"source_id": SOURCE_ID, "external_id": external_id, "payload": payload, "media": media}
         candidates.append({
             **stable,

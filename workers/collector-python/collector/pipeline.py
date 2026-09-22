@@ -7,8 +7,14 @@ from typing import Any
 
 from collector.connectors.javdb import CONNECTOR_VERSION, SOURCE_ID, extract_media_candidates
 from collector.contracts import ContractError
+from collector.jable_assets import load_current_performer_payloads
 from collector.samples import parse_manifest
 from collector.storage import complete_run, connect, database_stats, ingest_candidate, start_run
+
+PERFORMER_PROFILE_FIELDS = (
+    "name", "profile_url", "work_count", "aliases", "biography", "birth_date", "birth_place",
+    "nationality", "height", "weight", "blood_type", "measurements", "debut_date",
+)
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -86,6 +92,20 @@ def export_selfdeepsearch(database: Path, output_dir: Path) -> dict[str, Any]:
             FROM performers ORDER BY source_id, name
             """
         )]
+        current_payloads = {
+            source_id: load_current_performer_payloads(connection, source_id=source_id)
+            for source_id in {performer["source_id"] for performer in performers}
+        }
+        for performer in performers:
+            current = current_payloads[performer["source_id"]].get(
+                performer["external_id"], {"payload": {}, "field_provenance": {}},
+            )
+            # Resolved fields have their own evidence; current_content_hash still
+            # identifies the untouched source observation, not this export view.
+            performer.update({key: current["payload"][key] for key in PERFORMER_PROFILE_FIELDS if key in current["payload"]})
+            performer.setdefault("work_count", None)
+            performer.setdefault("aliases", [])
+            performer["field_provenance"] = current["field_provenance"]
         performer_media_rows = [dict(row) for row in connection.execute(
             """
             SELECT media_candidate_id, performer_id, source_id, external_id, candidate_url,

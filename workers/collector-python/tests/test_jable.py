@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import csv
+import importlib.util
 import struct
 import sys
 import tempfile
@@ -12,8 +14,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from collector.connectors.jable import CONNECTOR_VERSION, parse_jable_html  # noqa: E402
-from collector.jable_assets import archive_jable, audit_jable, audit_jable_coverage, build_performer_showcase, download_jable_media, ingest_jable_manifest, parse_jable_manifest  # noqa: E402
+from collector.jable_assets import archive_jable, audit_jable, audit_jable_coverage, build_performer_showcase, download_jable_media, ingest_jable_candidates, ingest_jable_manifest, load_current_performer_payloads, parse_jable_manifest  # noqa: E402
 from collector.storage import connect  # noqa: E402
+from collector.pipeline import export_selfdeepsearch  # noqa: E402
 
 
 LISTING_HTML = """<!doctype html><html><head><title>Models - Jable.TV</title></head><body>
@@ -61,6 +64,171 @@ class JableConnectorTests(unittest.TestCase):
         sample = '<h1>示例姓名</h1><meta property="og:image" content="https://assets-cdn.jable.tv/contents/videos/example.jpg">'
         result = parse_jable_html(sample, source_url="https://jable.tv/models/example/", checked_at="2026-09-19T00:00:00Z")
         self.assertEqual(result[0]["media"], [])
+
+    def test_profile_keeps_requested_actor_and_explicit_fields_only(self) -> None:
+        sample = '''<meta property="og:title" content="Jable.TV - 最新高清影片">
+          <meta name="description" content="generic site advertising">
+          <section class="related-models"><h1>推荐演员</h1>
+            <a href="/models/another/"><h6>另一演员</h6>
+              <img src="https://assets-cdn.jable.tv/contents/models/2/another.jpg"></a></section>
+          <main data-performer-profile><h1>示例姓名</h1>
+            <span data-performer-field="aliases">别名一、別名二</span>
+            <p data-performer-field="biography">公开的演员简介。</p>
+            <time itemprop="birthDate" datetime="1990-01-02">1990 年 1 月 2 日</time>
+            <span itemprop="height">160 cm</span>
+            <img class="avatar" src="https://assets-cdn.jable.tv/contents/models/1/person.jpg">
+            <a href="/videos/example/"><h1>影片标题</h1>
+              <img src="https://assets-cdn.jable.tv/contents/videos/example.jpg"></a>
+          </main>'''
+        candidates = parse_jable_html(sample, source_url="https://jable.tv/models/example/", checked_at="2026-09-22T00:00:00Z")
+        self.assertEqual([item["external_id"] for item in candidates], ["example"])
+        self.assertEqual(candidates[0]["payload"], {
+            "profile_url": "https://jable.tv/models/example/", "name": "示例姓名",
+            "aliases": ["別名二", "别名一"], "biography": "公开的演员简介。",
+            "birth_date": "1990-01-02", "height": "160 cm",
+        })
+        self.assertEqual([item["candidate_url"] for item in candidates[0]["media"]], ["https://assets-cdn.jable.tv/contents/models/1/person.jpg"])
+
+    def test_profile_never_invents_name_from_slug_or_marketing_titles(self) -> None:
+        for sample in (
+            '<title>Jable.TV - Free HD Videos</title><meta property="og:title" content="Jable.TV - 最新高清影片">',
+            '<title>示例姓名 - Jable.TV</title>',
+            '<section class="recommended"><h1>另一演员</h1></section>',
+            '<section itemscope itemtype="https://schema.org/VideoObject"><h1>影片专有标题</h1></section>',
+        ):
+            with self.subTest(sample=sample), self.assertRaisesRegex(ValueError, "no observed performer fields"):
+                parse_jable_html(sample, source_url="https://jable.tv/models/not-an-observed-name/", checked_at="2026-09-22T00:00:00Z")
+
+    def test_portrait_paths_reject_video_files_and_encoded_traversal(self) -> None:
+        for path in ("/contents/models/1/movie.mp4", "/contents/models/%2e%2e/videos/cover.jpg", "/contents/models/1/../../videos/cover.jpg"):
+            sample = f'<h1>示例姓名</h1><img class="avatar" src="https://assets-cdn.jable.tv{path}">'
+            result = parse_jable_html(sample, source_url="https://jable.tv/models/example/", checked_at="2026-09-22T00:00:00Z")
+            self.assertEqual(result[0]["media"], [])
+
+    def test_detail_enrichment_preserves_listing_fact_and_its_original_provenance(self) -> None:
+        listing_time = "2026-09-19T00:00:00Z"
+        detail_time = "2026-09-22T00:00:00Z"
+        listing = parse_jable_html('<a href="/models/example/"><h6>原名</h6><span>123 部影片</span></a>', source_url="https://jable.tv/models/2/", checked_at=listing_time)
+        detail = parse_jable_html('<h1>现名</h1><p data-performer-field="biography">公开简介。</p>', source_url="https://jable.tv/models/example/", checked_at=detail_time)
+        with tempfile.TemporaryDirectory() as directory:
+            database = Path(directory) / "collector.db"
+            ingest_jable_candidates(listing, database, checked_at=listing_time)
+            ingest_jable_candidates(detail, database, checked_at=detail_time)
+            # Reimporting an older capture must not move the current name backwards.
+            ingest_jable_candidates(listing, database, checked_at=listing_time)
+            connection = connect(database)
+            try:
+                current = load_current_performer_payloads(connection)["example"]
+                self.assertEqual(current["payload"]["name"], "现名")
+                self.assertEqual(current["payload"]["work_count"], 123)
+                self.assertEqual(current["field_provenance"]["work_count"]["checked_at"], listing_time)
+                self.assertEqual(current["field_provenance"]["work_count"]["source_url"], "https://jable.tv/models/2/")
+                self.assertEqual(current["field_provenance"]["biography"]["checked_at"], detail_time)
+                performer = connection.execute("SELECT * FROM performers").fetchone()
+                self.assertEqual(performer["name"], "现名")
+                self.assertEqual(performer["current_content_hash"], detail[0]["content_hash"])
+                observations = [json.loads(row[0]) for row in connection.execute("SELECT candidate_json FROM performer_observations")]
+                self.assertEqual(len(observations), 2)
+                self.assertIn(detail[0], observations)
+                self.assertNotIn("work_count", detail[0]["payload"])
+            finally:
+                connection.close()
+            build_performer_showcase(database, Path(directory) / "showcase")
+            catalog = json.loads((Path(directory) / "showcase" / "performers.json").read_text())
+            self.assertEqual(catalog["performers"][0]["work_count"], 123)
+            self.assertEqual(catalog["performers"][0]["biography"], "公开简介。")
+            export_selfdeepsearch(database, Path(directory) / "export")
+            exported = json.loads((Path(directory) / "export" / "performers.jsonl").read_text())
+            self.assertEqual(exported["work_count"], 123)
+            self.assertEqual(exported["biography"], "公开简介。")
+            self.assertEqual(exported["field_provenance"]["work_count"]["checked_at"], listing_time)
+            self.assertEqual(exported["current_content_hash"], detail[0]["content_hash"])
+
+    def test_prepare_exports_partial_enrichment_and_parseable_csv_provenance(self) -> None:
+        script = Path(__file__).resolve().parents[3] / "scripts" / "prepare_primary_data.py"
+        spec = importlib.util.spec_from_file_location("prepare_primary_data_test", script)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        listing_time = "2026-09-19T00:00:00Z"
+        detail_time = "2026-09-22T00:00:00Z"
+        listing = parse_jable_html('''<a href="/models/first/"><h6>A Person</h6></a>
+            <a href="/models/enriched/"><h6>Z Person</h6><span>12 部影片</span></a>''',
+            source_url="https://jable.tv/models/", checked_at=listing_time)
+        detail = parse_jable_html('''<h1>Z Person</h1>
+            <span data-performer-field="aliases">Z Alias</span>
+            <p data-performer-field="biography">公开简介。</p>
+            <span data-performer-field="height">160 cm</span>''',
+            source_url="https://jable.tv/models/enriched/", checked_at=detail_time)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            database = root / "collector.db"
+            ingest_jable_candidates(listing, database, checked_at=listing_time)
+            ingest_jable_candidates(detail, database, checked_at=detail_time)
+            archive_jable(database, root / "archive")
+            result = module.prepare(root / "archive", root / "prepared")
+            profiles = [json.loads(line) for line in (root / "prepared" / "profiles" / "performers.jsonl").read_text().splitlines()]
+            enriched = next(row for row in profiles if row["external_id"] == "enriched")
+            self.assertEqual(result["performers"], 2)
+            self.assertEqual(enriched["work_count"], 12)
+            self.assertEqual(enriched["aliases"], ["Z Alias"])
+            self.assertEqual(enriched["height"], "160 cm")
+            self.assertEqual(enriched["current_content_hash"], detail[0]["content_hash"])
+            self.assertEqual(enriched["field_provenance"]["work_count"]["checked_at"], listing_time)
+            self.assertEqual(enriched["field_provenance"]["aliases"]["checked_at"], detail_time)
+            with (root / "prepared" / "profiles" / "performers.csv").open(encoding="utf-8-sig", newline="") as stream:
+                csv_profiles = list(csv.DictReader(stream))
+            csv_enriched = next(row for row in csv_profiles if row["external_id"] == "enriched")
+            self.assertEqual(json.loads(csv_enriched["aliases"]), ["Z Alias"])
+            self.assertEqual(json.loads(csv_enriched["field_provenance"]), enriched["field_provenance"])
+            self.assertEqual(csv_enriched["biography"], "公开简介。")
+
+    def test_manifest_keeps_page_observations_separate_with_sample_timestamps(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "listing.html").write_text('<a href="/models/example/"><h6>示例姓名</h6><span>0 部影片</span></a>')
+            (root / "profile.html").write_text('<h1>示例姓名</h1><span data-performer-field="aliases">别名</span>')
+            manifest = root / "manifest.json"
+            manifest.write_text(json.dumps({"source_id": "jable_reference", "connector_version": CONNECTOR_VERSION,
+                "checked_at": "2026-09-22T00:00:00Z", "samples": [
+                    {"file": "listing.html", "url": "https://jable.tv/models/", "checked_at": "2026-09-19T00:00:00Z"},
+                    {"file": "profile.html", "url": "https://jable.tv/models/example/"},
+                ]}))
+            result = ingest_jable_manifest(manifest, root / "collector.db", root / "parsed")
+            self.assertEqual(result["performers"], 1)
+            self.assertEqual(result["database_counts"]["observations"], 2)
+            observations = [json.loads(line) for line in (root / "parsed" / "performers.jsonl").read_text().splitlines()]
+            self.assertEqual([row["provenance"]["checked_at"] for row in observations], ["2026-09-19T00:00:00Z", "2026-09-22T00:00:00Z"])
+            self.assertNotIn("aliases", observations[0]["payload"])
+            self.assertNotIn("work_count", observations[1]["payload"])
+            connection = connect(root / "collector.db")
+            try:
+                self.assertEqual(load_current_performer_payloads(connection)["example"]["payload"]["work_count"], 0)
+            finally:
+                connection.close()
+
+    def test_partial_profile_keeps_existing_name_without_fabricating_raw_name(self) -> None:
+        observed_at = "2026-09-22T00:00:00Z"
+        partial = parse_jable_html('<span data-performer-field="aliases">公开别名</span>', source_url="https://jable.tv/models/aoba-haru/", checked_at=observed_at)
+        self.assertNotIn("name", partial[0]["payload"])
+        with tempfile.TemporaryDirectory() as directory:
+            database = Path(directory) / "collector.db"
+            with self.assertRaisesRegex(ValueError, "no observed name"):
+                ingest_jable_candidates(partial, database, checked_at=observed_at)
+            connection = connect(database)
+            try:
+                self.assertEqual(connection.execute("SELECT status FROM collection_runs").fetchone()[0], "failed")
+            finally:
+                connection.close()
+            listing = parse_jable_html(LISTING_HTML, source_url="https://jable.tv/models/", checked_at="2026-09-19T00:00:00Z")
+            ingest_jable_candidates(listing, database, checked_at=observed_at)
+            ingest_jable_candidates(partial, database, checked_at=observed_at)
+            connection = connect(database)
+            try:
+                current = load_current_performer_payloads(connection)["aoba-haru"]
+                self.assertEqual(current["payload"]["name"], "青葉はる")
+                self.assertEqual(current["payload"]["aliases"], ["公开别名"])
+            finally:
+                connection.close()
 
     def test_media_stops_on_access_denial_and_does_not_retry_it(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

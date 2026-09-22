@@ -12,11 +12,12 @@
 | JavDB / Jable 访问与页面取样 | 可在可访问这些网站的电脑按第 5 节人工执行 | 目标 HTTP 状态、robots、少量公开详情 HTML |
 | JavDB 真实页面字段解析 | 已接入本地样本解析器 | 固定版本候选 JSONL、字段证据与 parse report |
 | JavDB 有界联网验收 | 已接入人工触发模式 | 最多 5 个显式详情 URL、逐项对账、SQLite staging 与错误表 |
-| Jable 演员 HTML 解析 | 已接入离线快照模式 | 提取公开演员姓名、头像候选和最多 3 张影视图片；自动联网仍被 403 挑战阻止 |
-| 生产定时调度 / 自动增量 / Jable 自动联网 | 尚未启用 | 需完成来源准入；Jable 当前遇到 403 挑战 |
+| Jable 演员 HTML 解析与人工浏览器采集 | 已接入快照与有界隔离浏览器模式 | 公开演员姓名、来源 ID、列表作品数及普通头像；逐页入库、续采和归档 |
+| 已保存主要数据的离线重建 | `npm run data:prepare` | 4,196 位演员、130 张普通头像、SQLite、JSONL/CSV、离线预览及缺项清单 |
+| 生产定时调度 / 自动增量 | 尚未启用 | 需完成来源准入和生产执行器；人工命令可用性取决于当次网络与访问响应 |
 | 正式审核发布、跨区调度和 PostgreSQL 入库 | 本仓库未提供 | 后续接入原 self-deepsearch 的 Go 服务 |
 
-**不要设置 `COLLECTION_ENABLED=true` 来尝试打开生产抓取。** 原项目仍有 Release A 守卫；本仓库的联网能力仅限 `collect-review` 人工验收命令，不包含自动网络调度。`collector probe --source-id javdb` 仍会被 fixture CLI 拒绝，不代表样本解析器或有界验收命令不可用。
+**不要设置 `COLLECTION_ENABLED=true` 来尝试打开生产抓取。** 原项目仍有 Release A 守卫；本仓库提供 `collect-review`、`capture:jable` 等人工有界命令，不包含生产网络调度。Jable 的命令与范围见[采集手册](./JABLE_ACTOR_ACQUISITION.md)，当前本地数据入口见[项目与主要数据指南](./PROJECT_DATA_GUIDE.md)。`collector probe --source-id javdb` 仍会被 fixture CLI 拒绝，不代表样本解析器或有界验收命令不可用。
 
 ## 2. 获取仓库并检查环境
 

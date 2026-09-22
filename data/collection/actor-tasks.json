@@ -1,0 +1,26 @@
+{
+  "schema_version": "actor-collection-plan@1",
+  "execution": "manual_resumable_batches",
+  "production_schedule_enabled": false,
+  "scope": "all_public_actor_metadata_and_observed_portraits",
+  "sources": [
+    {
+      "source_id": "jable_reference",
+      "listing_seeds": ["https://jable.tv/models/"],
+      "minimum_interval_seconds": 10
+    },
+    {
+      "source_id": "javdb_reference",
+      "listing_seeds": [
+        "https://javdb.com/actors",
+        "https://javdb.com/actors/censored",
+        "https://javdb.com/actors/uncensored",
+        "https://javdb.com/actors/western"
+      ],
+      "minimum_interval_seconds": 20
+    }
+  ],
+  "task_order": ["listing", "observed_avatar", "profile_without_avatar", "other_profile"],
+  "profile_fields": ["name", "aliases", "biography", "birth_date", "birth_place", "nationality", "height", "weight", "blood_type", "measurements", "work_count"],
+  "cross_source_identity": "separate_source_ids_no_name_only_merge"
+}

@@ -5,6 +5,7 @@
   "description": "Audited real-source collection, SQLite staging, media candidates and self-deepsearch exports",
   "engines": { "node": ">=22.0.0", "npm": ">=10.0.0" },
   "scripts": {
+    "data:prepare": "node scripts/run_python.mjs scripts/prepare_primary_data.py",
     "build:collection-demo": "node scripts/build_collection_demo.mjs",
     "preview:collection-demo": "node scripts/run_python.mjs scripts/serve_collection_demo.py",
     "collector": "node scripts/run_collector.mjs",
